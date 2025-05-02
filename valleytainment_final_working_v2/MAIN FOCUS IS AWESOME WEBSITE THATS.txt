@@ -1,0 +1,226 @@
+MAIN FOCUS IS AWESOME WEBSITE THATS USER FRIENDLY 
+
+OUR TEAM -
+
+Recording Artists
+coming soon
+
+Graphic Designers
+coming soon
+
+Videographers
+coming soon
+
+Artist Management
+coming soon
+
+Company Management
+coming soon
+
+partnerships 
+coming soon 
+
+--------
+
+CREATIVE STUDIO button 
+
+keep current image generator setup ect but add drop down toggle for option to use 
+
+Use OpenAI’s All-in-One API (GPT-4 + DALL·E) for generation (add this in if possible research everything for me)
+
+
+Use Stripe/PayPal/shopify for Payments (reoccurring calculate what i should charge to be max profitable)
+
+AI IMAGE GENERATION keep current but add option to generate using OpenAI’s All-in-One API (GPT-4 + DALL·E)
+
+AI VIDEO GENERATION (vudo api) documentation here : https://platform.vidu.com/introduction
+
+-------
+
+
+Valleytainment Thrift Shop button
+
+Liquidation Clean out Sales
+
+takes users to these BUTTON links with matching thumbnails (create or download for me) to each site
+
+https://whatnot.com/s/v51toNty
+
+https://www.ebay.com/usr/valleytainmentthrifts
+
+https://www.mercari.com/u/valleytainment?sv=0
+
+--------
+
+
+contact us BUTTON
+
+button takes users to email form where they can enter their idea then it will email us Valleytainment@gmail.com (set this up so it works)
+
+
+-------------
+
+button for FIND US page or window with all Valleytainment links with these clickable links and matching icons or thumbnails (find online, create for me)
+
+ALL THESE social media links /buttons
+
+https://www.instagram.com/valleytainment/profilecard/?igsh=czI0MjgwYmpueDJr
+
+https://mastodon.social/@valleytainment
+
+https://scoopzapp.com/@303300539?s=a7&pd=0KWcKBda&hl=en_US&send_time=1744421628&actBtn=null
+
+https://v.lemon8-app.com/al/OgFUFrecbp
+
+https://www.snapchat.com/add/valleytainmentt?share_id=ybpFY6B9FLA&locale=en-US
+
+https://www.facebook.com/share/1HqDpQweeL/
+
+https://x.com/valleytainment?s=09
+
+https://www.threads.net/@valleytainment
+
+
+
+-----
+
+
+DONATION BUTTON 
+
+LETS USERS DONATE TO 
+
+$VALLEYTAINMENT - CASH APP USERNAME 
+----------
+
+
+
+floating bubble in corner of webpage for the Vbot chat bot MUST BE A LLM GPT 4 OR SOMTHING SIMILAR SO IT CAN BE USED LIKE open ai CHAT GPT 
+
+
+-------
+
+
+i want all 'VALLEYTAINMENT PRODUCTIONS' words to have all different colors like my logo does for the letters 
+
+-----------
+
+
+
+i want to let users turn off VFX if they have slow computer 
+
+------------
+
+
+i want a real visitor counter to keep count of website visitors 
+
+---------
+
+
+LOCATION
+
+PITTSBURGH, PA + World Wide 
+
+Founded 2012 established 2018
+
+
+Who We Are
+Valleytainment Productions is a cutting-edge entertainment company founded in 2012 established in 2018. We specialize in content creation, talent management, music production, videography, podcasting and more.
+
+Our Mission
+We're dedicated to pushing creative boundaries and delivering high-quality entertainment experiences that resonate with modern audiences. Our love & support for local talent and creativity distinctive sets us apart from the rest, even our monster characters branding and neon color scheme stands out in the industry.
+
+Our Vision
+To become the leading entertainment production company in Pittsburgh then, the world, to be known for innovative content, exceptional talent management, and trend-setting merchandise that captures our unique brand identity, while showing love and support to all.
+
+Content Creation
+Talent Management
+Music/Video Production
+Event Planning
+Graphic Design 
+Talent management 
+and More
+
+---------------
+
+i want a TEAM MEMBER LOGIN PORTAL that
+
+LETS TEAM LOGIN TO MAKE slight CHANGES TO SITE (NO CODING REQUIRED) , VIEW STATS, upload a post or events ECT 
+
+---------------
+
+
+API KEYS AND STUFF
+
+
+
+OpenAI API Key for DALL·E integration.
+
+key:
+
+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
+
+
+Vidu API Key for video generation.​
+platform.vidu.com
+
+key : vda_811716030643572736_fczdAPhOxDzAH8GJfVduYhhg9Tofm21f
+
+
+Payment Integration Details: 
+
+
+ PayPal account information for setting up subscriptions/ payments 
+
+API credentials
+Sandbox
+API Key:
+AcxIwVTiuodAkKy1aJFg1ZggJ27qN_BdKWlYz3HN14nfK0Lv_2U18G7SA1ccdr3rnfmeZW3LHCkk9b_s
+copy text
+Secret:
+EO5r5E8kCcRh84VgyFSRq3Q48b2hwp9Q9BZ9KWmyrRSr0U4WUULgywlbz7WEvM_qXuOoYJ9B3SJCUlxQ
+decrypt textcopy text
+Manage API credentials
+Sandbox credentials
+Username:
+sb-g2nht40454287@business.example.com
+copy text
+Password:
+tn,d>&H0
+
+
+API credentials
+Live
+API Key:
+AYomwL72WGvtTbLWMkDh-LVxYLqwCyYDBy4AaIAOs3kFbJMcXtyR0XUEIez0UNcy_8JXrkZvO01qPIAP
+copy text
+Secret:
+EGYl_6p8gF3oJTBEYUqjwLsSYp46Fj1eMuNDhqmyKI5narlwXmhrShek1UbZDF4Dg5X2lXZO3m06VwDq
+
+​-------
+
+
+Below is the complete, fully‑functional, omni‑overlord‑level HTML. It includes:
+
+🌈 all Multi‑colored “Valleytainment Productions” text via a rainbow gradient
+
+⚙️ A VFX toggle (disable/enable background canvases & lightning effect)
+
+🔢 A real correct and working visitor counter backed by CountAPI (persists across visitors)
+
+📍 Updated location & founding details
+
+📧 A working Contact Us form that mails to Valleytainment@gmail.com
+
+🛍️ A Thrift Shop modal with buttons linking to Whatnot, eBay, Mercari
+
+🔗 A Find Us modal containing all social links with icons
+
+💸 A Donate button linking to Cash App $VALLEYTAINMENT
+
+🖱️ Back to Top, Dark Mode, Scroll Progress, Tabs, AI Image Generator, and full VFX canvases
+
+🎨 Custom scrollbars matching the page palette
+
+📱 Responsive mobile nav
+
+2 chat bots having a live discussion, i want to let users start the conversation by adding an input box to get the ais started on specific topics ect 
