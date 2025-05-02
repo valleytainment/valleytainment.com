@@ -1,0 +1,4 @@
+# netlify.toml (place this at the _root_ of your repo)
+[build]
+  command = ""                       # no build step
+  publish = "valleytainment_final_working_v2"   # where index.html lives
