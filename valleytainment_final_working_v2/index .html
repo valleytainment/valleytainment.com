@@ -1,0 +1,1873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Valleytainment Productions</title>
+  <meta name="description" content="Cutting-edge entertainment company specializing in content creation, talent management, and music production with vibrant neon aesthetics" />
+
+  <!-- Favicon & Manifest -->
+  <link rel="icon" href="favicon.ico" />
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- Preconnect & Preload -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" />
+
+  <!-- Critical Inline CSS -->
+  <style>
+    :root {
+      --neon1: #ff00aa;
+      --neon2: #3eff00;
+      --accent: #00c3ff;
+      --dark: #121212;
+      --light: #f8f8f8;
+      --glass: rgba(255, 255, 255, 0.1);
+      --font: 'Montserrat', sans-serif;
+      --trans: all 0.3s ease;
+      --rainbow: linear-gradient(
+        90deg,
+        #ff0000 0%, #ff7f00 14%, 
+        #ffff00 28%, #00ff00 42%,
+        #0000ff 56%, #4b0082 70%,
+        #8b00ff 84%, #ff00ff 100%
+      );
+    }
+    
+    /* Base Styles */
+    *, *::before, *::after { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    }
+    html { 
+      scroll-behavior: smooth; 
+      overflow-x: hidden;
+    }
+    body {
+      font-family: var(--font);
+      background: var(--dark);
+      color: var(--light);
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease;
+    }
+    body.light-mode {
+      background: var(--light);
+      color: var(--dark);
+    }
+    
+    /* Accessibility */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--neon1);
+      color: #fff;
+      padding: 0.5rem;
+      z-index: 100;
+      transition: top 0.3s;
+    }
+    .skip-link:focus { top: 0; }
+    :focus-visible {
+      outline: 3px solid var(--neon1);
+      outline-offset: 3px;
+    }
+    
+    /* === RAINBOW NEON HEADLINE === */
+    .hero-title {
+      position: relative;
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      text-align: center;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      flex-wrap: nowrap;
+      white-space: nowrap;
+      overflow: visible;
+    }
+    .rainbow-char {
+      display: inline-block;
+      animation: neon-pulse 1.5s ease-in-out infinite alternate;
+      text-shadow: 0 0 5px currentColor;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      background-image: var(--rainbow);
+      background-size: 800% 100%;
+      background-position-x: calc(var(--char-index) * -12.5%);
+    }
+    @keyframes neon-pulse {
+      0% { 
+        opacity: 0.8; 
+        text-shadow: 0 0 5px currentColor; 
+      }
+      100% { 
+        opacity: 1; 
+        text-shadow: 0 0 15px currentColor, 
+                     0 0 30px currentColor;
+      }
+    }
+    
+    /* === LOCATION BANNER === */
+    .location-banner {
+      font-size: clamp(0.9rem, 3vw, 1.2rem);
+      margin: 1rem auto;
+      padding: 0.8rem 1.2rem;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 5px;
+      display: inline-flex;
+      align-items: center;
+      border-left: 3px solid var(--neon1);
+      box-shadow: 0 0 10px rgba(0, 195, 255, 0.2);
+      text-align: center;
+    }
+    .location-icon {
+      margin-right: 0.5rem;
+      font-size: 1.2rem;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    
+    /* === NEON SCROLLBARS === */
+    ::-webkit-scrollbar {
+      width: 12px;
+      height: 12px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--rainbow);
+      border-radius: 10px;
+      border: 2px solid var(--dark);
+      box-shadow: 0 0 5px rgba(0, 195, 255, 0.5);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      box-shadow: 0 0 10px rgba(0, 195, 255, 0.8);
+    }
+    @media (max-width: 768px) {
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+    }
+    
+    /* === VFX TOGGLE === */
+    #vfx-toggle {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      background: var(--glass);
+      border: 2px solid var(--accent);
+      color: var(--light);
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      z-index: 1000;
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: var(--trans);
+      backdrop-filter: blur(5px);
+    }
+    #vfx-toggle:hover {
+      background: var(--accent);
+      color: var(--dark);
+      box-shadow: 0 0 15px var(--accent);
+    }
+    #vfx-toggle i {
+      transition: var(--trans);
+    }
+    
+    /* === UTILITY CONTROLS === */
+    #dark-mode-toggle {
+      position: fixed;
+      bottom: 1rem;
+      right: 5rem;
+      background: var(--glass);
+      border: none;
+      color: var(--light);
+      padding: 0.5rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+      z-index: 1000;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(5px);
+      transition: var(--trans);
+    }
+    #dark-mode-toggle:hover {
+      background: var(--accent);
+      color: var(--dark);
+      box-shadow: 0 0 15px var(--accent);
+    }
+    
+    .back-to-top {
+      position: fixed;
+      bottom: 5rem;
+      right: 1rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--glass);
+      color: var(--light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--trans);
+      backdrop-filter: blur(5px);
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    .back-to-top:hover {
+      background: var(--accent);
+      color: var(--dark);
+      box-shadow: 0 0 15px var(--accent);
+    }
+    
+    /* === VFX CANVASES === */
+    #bg-canvas, #cursor-trail, #lightning-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: -1;
+    }
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      width: 0;
+      background: var(--rainbow);
+      z-index: 9999;
+      transition: width 0.1s linear;
+    }
+    
+    /* === MODALS === */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      backdrop-filter: blur(5px);
+    }
+    .modal.open {
+      display: flex;
+      animation: fadeIn 0.3s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .modal-content {
+      background: var(--dark);
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 90%;
+      max-height: 90%;
+      overflow: auto;
+      position: relative;
+      border: 1px solid var(--glass);
+      box-shadow: 0 0 30px rgba(0, 195, 255, 0.3);
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: var(--light);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: var(--trans);
+    }
+    .modal-close:hover {
+      color: var(--neon1);
+      transform: scale(1.2);
+    }
+    .modal-subtitle {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+    
+    /* === SOCIAL & THRIFT GRIDS === */
+    .find-us-grid, .thrift-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .find-us-card, .thrift-card {
+      background: var(--glass);
+      padding: 1.5rem 1rem;
+      border-radius: 8px;
+      text-align: center;
+      transition: var(--trans);
+      border: 1px solid transparent;
+      backdrop-filter: blur(5px);
+      text-decoration: none;
+      color: var(--light);
+    }
+    .find-us-card:hover, .thrift-card:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--accent);
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 195, 255, 0.2);
+    }
+    .find-us-card i, .thrift-card i {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      background: var(--rainbow);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .find-us-card div, .thrift-card div {
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+    .thrift-card img {
+      width: 100%;
+      height: 100px;
+      object-fit: contain;
+      margin-bottom: 0.5rem;
+      border-radius: 5px;
+    }
+    .thrift-platform {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    /* === AI IMAGE GENERATOR === */
+    .image-generator-simple {
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      background: rgba(18, 18, 18, 0.5);
+      border: 1px solid var(--accent);
+    }
+    .pi-result {
+      margin-top: 1rem;
+      background: var(--glass);
+      border-radius: 8px;
+      overflow: auto;
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px dashed var(--accent);
+      padding: 1rem;
+    }
+    .pi-result img {
+      max-width: 100%;
+      max-height: 500px;
+      border-radius: 5px;
+    }
+    .pi-actions {
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    
+    /* === HEADER & NAVIGATION === */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1rem 0;
+      background: rgba(18, 18, 18, 0.8);
+      backdrop-filter: blur(10px);
+      transition: var(--trans);
+    }
+    .light-mode header {
+      background: rgba(248, 248, 248, 0.8);
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      display: block;
+      max-width: 150px;
+    }
+    .logo img {
+      width: 100%;
+      height: auto;
+    }
+    .nav-menu {
+      display: flex;
+    }
+    .nav-list {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+      align-items: center;
+    }
+    .nav-list a {
+      color: var(--light);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--trans);
+      position: relative;
+    }
+    .light-mode .nav-list a {
+      color: var(--dark);
+    }
+    .nav-list a:hover {
+      color: var(--accent);
+    }
+    .nav-list a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: var(--trans);
+    }
+    .nav-list a:hover::after {
+      width: 100%;
+    }
+    .btn {
+      background: transparent;
+      border: 2px solid var(--accent);
+      color: var(--light);
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--trans);
+      text-decoration: none;
+      display: inline-block;
+    }
+    .light-mode .btn {
+      color: var(--dark);
+    }
+    .btn:hover {
+      background: var(--accent);
+      color: var(--dark);
+      box-shadow: 0 0 15px rgba(0, 195, 255, 0.5);
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--dark);
+    }
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--light);
+    }
+    .light-mode .btn-primary:hover {
+      color: var(--dark);
+    }
+    .btn-secondary {
+      background: var(--neon1);
+      border-color: var(--neon1);
+      color: var(--dark);
+    }
+    .btn-secondary:hover {
+      background: transparent;
+      color: var(--light);
+      box-shadow: 0 0 15px rgba(255, 0, 170, 0.5);
+    }
+    .btn-small {
+      padding: 0.3rem 0.8rem;
+      font-size: 0.9rem;
+    }
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 30px;
+      height: 20px;
+      position: relative;
+      z-index: 1001;
+    }
+    .mobile-menu-toggle span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--light);
+      position: absolute;
+      left: 0;
+      transition: var(--trans);
+    }
+    .light-mode .mobile-menu-toggle span {
+      background: var(--dark);
+    }
+    .mobile-menu-toggle span:nth-child(1) {
+      top: 0;
+    }
+    .mobile-menu-toggle span:nth-child(2) {
+      top: 9px;
+    }
+    .mobile-menu-toggle span:nth-child(3) {
+      top: 18px;
+    }
+    .mobile-menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg);
+      top: 9px;
+    }
+    .mobile-menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .mobile-menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg);
+      top: 9px;
+    }
+    
+    /* === HERO SECTION === */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 6rem 1rem 4rem;
+      position: relative;
+    }
+    .hero-gradient-enhanced {
+      background: radial-gradient(circle at center, rgba(0, 195, 255, 0.1), transparent 70%);
+    }
+    .hero-content {
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .magnetic-btn-enhanced {
+      position: relative;
+      overflow: hidden;
+    }
+    .magnetic-btn-enhanced::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: var(--rainbow);
+      z-index: -1;
+      border-radius: 28px;
+      opacity: 0;
+      transition: var(--trans);
+    }
+    .magnetic-btn-enhanced:hover::before {
+      opacity: 0.5;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .stat-label {
+      font-size: 1rem;
+      opacity: 0.8;
+    }
+    
+    /* === ABOUT SECTION === */
+    .about-section {
+      padding: 5rem 0;
+      background: rgba(0, 0, 0, 0.2);
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--rainbow);
+      border-radius: 3px;
+    }
+    .section-subtitle {
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+    .about-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .about-image {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .about-text {
+      padding: 1rem;
+    }
+    .about-text h3 {
+      margin: 1.5rem 0 0.5rem;
+      color: var(--accent);
+    }
+    .about-text h3:first-child {
+      margin-top: 0;
+    }
+    .about-text p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    .about-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+      list-style: none;
+    }
+    .about-features li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .about-features i {
+      color: var(--neon1);
+    }
+    
+    /* === SERVICES SECTION === */
+    .services-section {
+      padding: 5rem 0;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .service-card {
+      background: var(--glass);
+      padding: 2rem;
+      border-radius: 8px;
+      text-align: center;
+      transition: var(--trans);
+      backdrop-filter: blur(5px);
+      border: 1px solid transparent;
+    }
+    .service-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    .service-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+    .service-card h3 {
+      margin-bottom: 1rem;
+    }
+    .service-card p {
+      line-height: 1.6;
+    }
+    
+    /* === INTERACTIVE SECTION === */
+    .interactive-section {
+      padding: 5rem 0;
+      background: rgba(0, 0, 0, 0.2);
+    }
+    .tabs-container {
+      margin-top: 2rem;
+    }
+    .tabs-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      background: var(--glass);
+      border: none;
+      color: var(--light);
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: var(--trans);
+      backdrop-filter: blur(5px);
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--accent);
+      color: var(--dark);
+    }
+    .tabs-content {
+      background: var(--glass);
+      border-radius: 8px;
+      padding: 2rem;
+      backdrop-filter: blur(5px);
+    }
+    .tab-pane {
+      display: none;
+    }
+    .tab-pane.active {
+      display: block;
+      animation: fadeIn 0.5s;
+    }
+    .visualizer-placeholder, .ar-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 300px;
+      text-align: center;
+      color: var(--accent);
+    }
+    .visualizer-placeholder i, .ar-placeholder i {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      opacity: 0.7;
+    }
+    
+    /* === CONTACT FORM === */
+    .idea-form-section {
+      padding: 5rem 0;
+    }
+    .form-container {
+      max-width: 600px;
+      margin: 2rem auto 0;
+      padding: 2rem;
+      border-radius: 8px;
+      backdrop-filter: blur(5px);
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      background: rgba(0, 0, 0, 0.2);
+      color: var(--light);
+      transition: var(--trans);
+    }
+    .light-mode .form-group input, .light-mode .form-group textarea {
+      background: rgba(255, 255, 255, 0.8);
+      color: var(--dark);
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: var(--accent);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 195, 255, 0.2);
+    }
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    /* === FOOTER === */
+    .footer-section {
+      padding: 3rem 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .footer-logo {
+      max-width: 150px;
+    }
+    .footer-logo img {
+      width: 100%;
+      height: auto;
+    }
+    .footer-info {
+      flex: 1;
+      min-width: 200px;
+    }
+    .footer-info p {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .footer-info a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: var(--trans);
+    }
+    .footer-info a:hover {
+      text-decoration: underline;
+    }
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+    }
+    .footer-social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--glass);
+      color: var(--light);
+      transition: var(--trans);
+      backdrop-filter: blur(5px);
+    }
+    .footer-social a:hover {
+      background: var(--accent);
+      color: var(--dark);
+      transform: translateY(-3px);
+    }
+    .footer-copyright {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid var(--glass);
+    }
+    
+    /* === ANIMATIONS & EFFECTS === */
+    .card-tilt {
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+    .glass-enhanced {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+    .reveal-enhanced, .reveal-enhanced-left, .reveal-enhanced-right {
+      opacity: 0;
+      transition: all 1s;
+    }
+    .reveal-enhanced.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-enhanced-left.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-enhanced-right.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    /* === RESPONSIVE ADJUSTMENTS === */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2rem;
+        transform: scale(0.9);
+      }
+      .find-us-grid, .thrift-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      }
+      #vfx-toggle {
+        padding: 0.5rem;
+        font-size: 0;
+      }
+      #vfx-toggle i {
+        font-size: 1rem;
+        margin-right: 0;
+      }
+      .mobile-menu-toggle {
+        display: block;
+      }
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: var(--dark);
+        padding: 5rem 1.5rem 2rem;
+        transition: var(--trans);
+        z-index: 1000;
+        overflow-y: auto;
+      }
+      .light-mode .nav-menu {
+        background: var(--light);
+      }
+      .nav-menu.active {
+        right: 0;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+      }
+      .nav-list {
+        flex-direction: column;
+        gap: 2rem;
+        align-items: flex-start;
+      }
+      .nav-list li {
+        width: 100%;
+      }
+      .nav-list a {
+        display: block;
+        width: 100%;
+        padding: 0.5rem 0;
+      }
+      .dropdown {
+        position: static;
+        width: 100%;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        background: transparent;
+        box-shadow: none;
+        padding: 0.5rem 0 0 1rem;
+        display: none;
+      }
+      .dropdown.show {
+        display: block;
+      }
+      .has-dropdown .dropdown-toggle::after {
+        right: 0;
+      }
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .footer-info p {
+        justify-content: center;
+      }
+    }
+  </style>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+</head>
+<body>
+  <!-- Accessibility -->
+  <a class="skip-link" href="#main">Skip to content</a>
+  
+  <!-- VFX Canvases -->
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+  <canvas id="cursor-trail" aria-hidden="true"></canvas>
+  <canvas id="lightning-canvas" aria-hidden="true"></canvas>
+  <div id="scroll-progress" aria-hidden="true"></div>
+  
+  <!-- Utility Controls -->
+  <button id="dark-mode-toggle" aria-label="Toggle dark mode">🌓</button>
+  <button id="vfx-toggle" aria-label="Toggle visual effects"><i class="fas fa-magic"></i> <span>VFX</span></button>
+  <a href="#" class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
+
+  <!-- HEADER -->
+  <header role="banner">
+    <div class="container header-content">
+      <a href="#hero" class="logo">
+        <img src="https://placehold.co/150x50/121212/00c3ff?text=VALLEYTAINMENT" alt="Valleytainment Logo" />
+      </a>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      <nav class="nav-menu">
+        <ul class="nav-list">
+          <li><a href="#hero">Home</a></li>
+          <li class="has-dropdown">
+            <a href="#about" class="dropdown-toggle">About</a>
+            <ul class="dropdown">
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#team">Our Team</a></li>
+              <li><a href="#recording-artists">Artists</a></li>
+            </ul>
+          </li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#interactive">Interactive</a></li>
+          <li><button id="find-us-btn" class="btn btn-small">Find Us</button></li>
+          <li><button id="thrift-shop-btn" class="btn btn-small">Thrift Shop</button></li>
+          <li><a href="#idea-form" class="btn btn-primary">Contact Us</a></li>
+          <li><a href="https://cash.app/$VALLEYTAINMENT" target="_blank" class="btn btn-secondary">Donate</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- FIND US MODAL -->
+  <div id="find-us-modal" class="modal">
+    <div class="modal-content glass-enhanced">
+      <button class="modal-close" aria-label="Close">&times;</button>
+      <h2>Find Us On Social Media</h2>
+      <div class="find-us-grid">
+        <a href="https://www.instagram.com/valleytainment/profilecard/?igsh=czI0MjgwYmpueDJr" target="_blank" class="find-us-card">
+          <i class="fab fa-instagram"></i><div>Instagram</div>
+        </a>
+        <a href="https://mastodon.social/@valleytainment" target="_blank" class="find-us-card">
+          <i class="fab fa-mastodon"></i><div>Mastodon</div>
+        </a>
+        <a href="https://scoopzapp.com/@303300539?s=a7&pd=0KWcKBda&hl=en_US&send_time=1744421628&actBtn=null" target="_blank" class="find-us-card">
+          <i class="fas fa-rss"></i><div>Scoopz</div>
+        </a>
+        <a href="https://v.lemon8-app.com/al/OgFUFrecbp" target="_blank" class="find-us-card">
+          <i class="fas fa-lemon"></i><div>Lemon8</div>
+        </a>
+        <a href="https://www.snapchat.com/add/valleytainmentt?share_id=ybpFY6B9FLA&locale=en-US" target="_blank" class="find-us-card">
+          <i class="fab fa-snapchat"></i><div>Snapchat</div>
+        </a>
+        <a href="https://www.facebook.com/share/1HqDpQweeL/" target="_blank" class="find-us-card">
+          <i class="fab fa-facebook"></i><div>Facebook</div>
+        </a>
+        <a href="https://x.com/valleytainment?s=09" target="_blank" class="find-us-card">
+          <i class="fab fa-twitter"></i><div>X / Twitter</div>
+        </a>
+        <a href="https://www.threads.net/@valleytainment" target="_blank" class="find-us-card">
+          <i class="fas fa-hashtag"></i><div>Threads</div>
+        </a>
+        <a href="https://www.tiktok.com/@valleytainment?lang=en" target="_blank" class="find-us-card">
+          <i class="fab fa-tiktok"></i><div>TikTok</div>
+        </a>
+        <a href="https://linktr.ee/valleytainment" target="_blank" class="find-us-card">
+          <i class="fas fa-link"></i><div>Linktree</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- THRIFT SHOP MODAL -->
+  <div id="thrift-shop-modal" class="modal">
+    <div class="modal-content glass-enhanced">
+      <button class="modal-close" aria-label="Close">&times;</button>
+      <h2>Valleytainment Thrift Shop</h2>
+      <p class="modal-subtitle">Liquidation Clean out Sales</p>
+      <div class="thrift-grid">
+        <a href="https://whatnot.com/s/v51toNty" target="_blank" class="thrift-card">
+          <img src="https://placehold.co/100x100/121212/00c3ff?text=Whatnot" alt="Whatnot">
+          <div class="thrift-platform">
+            <i class="fas fa-shopping-bag"></i>
+            <span>Whatnot</span>
+          </div>
+        </a>
+        <a href="https://www.ebay.com/usr/valleytainmentthrifts" target="_blank" class="thrift-card">
+          <img src="https://placehold.co/100x100/121212/00c3ff?text=eBay" alt="eBay">
+          <div class="thrift-platform">
+            <i class="fas fa-store"></i>
+            <span>eBay</span>
+          </div>
+        </a>
+        <a href="https://www.mercari.com/u/valleytainment?sv=0" target="_blank" class="thrift-card">
+          <img src="https://placehold.co/100x100/121212/00c3ff?text=Mercari" alt="Mercari">
+          <div class="thrift-platform">
+            <i class="fas fa-tags"></i>
+            <span>Mercari</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main id="main" role="main">
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section hero-gradient-enhanced">
+      <div class="container hero-content">
+        <h1 class="hero-title" id="rainbow-title">VALLEYTAINMENT PRODUCTIONS</h1>
+        <div class="location-banner">
+          <i class="fas fa-map-marker-alt location-icon"></i>
+          <span class="location-text">PITTSBURGH PA + Worldwide — Founded 2012 • Established 2018</span>
+        </div>
+        <div class="hero-buttons">
+          <a href="#services" class="btn btn-primary magnetic-btn-enhanced">Our Services</a>
+          <a href="#idea-form" class="btn btn-secondary magnetic-btn-enhanced">Contact Us</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number counter" id="visitor-counter">0</span>
+            <span class="stat-label">Visitors</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number counter">1500</span>
+            <span class="stat-label">Projects</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number counter">250</span>
+            <span class="stat-label">Clients</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title reveal-enhanced">About Valleytainment</h2>
+          <p class="section-subtitle reveal-enhanced">Our story, mission, and vision</p>
+        </div>
+        <div class="about-content">
+          <div class="about-image reveal-enhanced-left card-tilt">
+            <img src="https://placehold.co/600x400/121212/00c3ff?text=Valleytainment" alt="Valleytainment team at work" />
+          </div>
+          <div class="about-text reveal-enhanced-right">
+            <h3>Who We Are</h3>
+            <p>Valleytainment Productions is a cutting-edge entertainment company founded in 2012 and established in 2018. We specialize in content creation, talent management, music/video production, videography, podcasting, graphic design, event planning, and more.</p>
+            
+            <h3>Our Mission</h3>
+            <p>We're dedicated to pushing creative boundaries and delivering high-quality entertainment experiences that resonate with modern audiences. Our love & support for local talent and creativity sets us apart, and our monster character branding plus neon color scheme stands out in the industry.</p>
+            
+            <h3>Our Vision</h3>
+            <p>To become the leading entertainment production company in Pittsburgh then, the world, to be known for innovative content, exceptional talent management, and trend-setting merchandise that captures our unique brand identity, while showing love and support to all.</p>
+            
+            <ul class="about-features">
+              <li><i class="fas fa-video"></i> Content Creation</li>
+              <li><i class="fas fa-users"></i> Talent Management</li>
+              <li><i class="fas fa-music"></i> Music/Video Production</li>
+              <li><i class="fas fa-calendar-alt"></i> Event Planning</li>
+              <li><i class="fas fa-paint-brush"></i> Graphic Design</li>
+              <li><i class="fas fa-podcast"></i> Podcasting & More</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="services-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title reveal-enhanced">Our Services</h2>
+          <p class="section-subtitle reveal-enhanced">What we offer to our clients</p>
+        </div>
+        <div class="services-grid">
+          <div class="service-card glass-enhanced card-tilt reveal-enhanced">
+            <i class="fas fa-video service-icon"></i>
+            <h3>Content Creation</h3>
+            <p>High-quality video production, editing, and content strategy</p>
+          </div>
+          <div class="service-card glass-enhanced card-tilt reveal-enhanced">
+            <i class="fas fa-users service-icon"></i>
+            <h3>Talent Management</h3>
+            <p>Artist development, booking, and career strategy</p>
+          </div>
+          <div class="service-card glass-enhanced card-tilt reveal-enhanced">
+            <i class="fas fa-music service-icon"></i>
+            <h3>Music Production</h3>
+            <p>Recording, mixing, mastering, and beat making</p>
+          </div>
+          <div class="service-card glass-enhanced card-tilt reveal-enhanced">
+            <i class="fas fa-calendar-alt service-icon"></i>
+            <h3>Event Planning</h3>
+            <p>Concert production, promotional events, and more</p>
+          </div>
+          <div class="service-card glass-enhanced card-tilt reveal-enhanced">
+            <i class="fas fa-paint-brush service-icon"></i>
+            <h3>Graphic Design</h3>
+            <p>Logos, merch, album art, and promotional materials</p>
+          </div>
+          <div class="service-card glass-enhanced card-tilt reveal-enhanced">
+            <i class="fas fa-podcast service-icon"></i>
+            <h3>Podcasting</h3>
+            <p>Full podcast production and distribution</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE SECTION -->
+    <section id="interactive" class="interactive-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title reveal-enhanced">Interactive Features</h2>
+          <p class="section-subtitle reveal-enhanced">Experience the Valleytainment magic</p>
+        </div>
+        <div class="tabs-container">
+          <div class="tabs-nav">
+            <button class="tab-btn active" data-tab="pi-tab">AI Image Generator</button>
+            <button class="tab-btn" data-tab="music-tab">Music Visualizer</button>
+            <button class="tab-btn" data-tab="ar-tab">AR Experience</button>
+          </div>
+          <div class="tabs-content">
+            <div class="tab-pane active" id="pi-tab">
+              <div class="image-generator-simple">
+                <div class="form-group">
+                  <label for="pi-prompt">Describe your image:</label>
+                  <textarea id="pi-prompt" rows="2" placeholder="e.g., A neon cityscape at night with monster characters"></textarea>
+                </div>
+                <button id="pi-generate" class="btn btn-primary">Generate</button>
+                <div id="pi-result" class="pi-result"><p>Enter prompt & click Generate.</p></div>
+                <div id="pi-actions" class="pi-actions"></div>
+              </div>
+            </div>
+            <div class="tab-pane" id="music-tab">
+              <div class="visualizer-placeholder">
+                <i class="fas fa-music"></i>
+                <p>Coming Soon: Interactive music visualizer</p>
+              </div>
+            </div>
+            <div class="tab-pane" id="ar-tab">
+              <div class="ar-placeholder">
+                <i class="fas fa-vr-cardboard"></i>
+                <p>Coming Soon: AR monster character experience</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT FORM -->
+    <section id="idea-form" class="idea-form-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title reveal-enhanced">Contact Us</h2>
+          <p class="section-subtitle reveal-enhanced">Need to contact us? Want to collaborate? Reach out!</p>
+        </div>
+        <form id="email-form" class="form-container glass-enhanced">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer-section" role="contentinfo">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="https://placehold.co/150x50/121212/00c3ff?text=VALLEYTAINMENT" alt="Valleytainment Logo" />
+        </div>
+        <div class="footer-info">
+          <p><i class="fas fa-map-marker-alt"></i> Pittsburgh, PA & Worldwide</p>
+          <p><i class="fas fa-envelope"></i> <a href="mailto:Valleytainment@gmail.com">Valleytainment@gmail.com</a></p>
+          <p><i class="fas fa-clock"></i> Mon–Fri: 9 AM–6 PM EST</p>
+        </div>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/valleytainment/profilecard/?igsh=czI0MjgwYmpueDJr" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.tiktok.com/@valleytainment?lang=en" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="https://x.com/valleytainment?s=09" target="_blank" aria-label="X/Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="https://linktr.ee/valleytainment" target="_blank" aria-label="Linktree"><i class="fas fa-link"></i></a>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <p>&copy; <span id="current-year"></span> Valleytainment Productions. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // ===== RAINBOW TITLE =====
+      const title = document.getElementById('rainbow-title');
+      const text = title.textContent;
+      title.innerHTML = '';
+      
+      // Create rainbow characters with index for color positioning
+      text.split('').forEach((char, index) => {
+        const span = document.createElement('span');
+        span.className = 'rainbow-char';
+        span.textContent = char === ' ' ? '\u00A0' : char;
+        span.style.setProperty('--char-index', index % 8);
+        title.appendChild(span);
+      });
+      
+      // Set current year in footer
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+      
+      // ===== VFX TOGGLE =====
+      const vfxToggle = document.getElementById('vfx-toggle');
+      let vfxEnabled = localStorage.getItem('vfxEnabled') !== 'false';
+      
+      function updateVFXState() {
+        const canvases = document.querySelectorAll('canvas');
+        canvases.forEach(c => c.style.display = vfxEnabled ? 'block' : 'none');
+        
+        if (vfxEnabled) {
+          vfxToggle.innerHTML = '<i class="fas fa-magic"></i> <span>VFX ON</span>';
+          vfxToggle.style.backgroundColor = 'var(--neon1)';
+          vfxToggle.style.color = 'var(--dark)';
+        } else {
+          vfxToggle.innerHTML = '<i class="fas fa-eye-slash"></i> <span>VFX OFF</span>';
+          vfxToggle.style.backgroundColor = 'var(--glass)';
+          vfxToggle.style.color = 'var(--light)';
+        }
+      }
+      
+      vfxToggle.addEventListener('click', () => {
+        vfxEnabled = !vfxEnabled;
+        localStorage.setItem('vfxEnabled', vfxEnabled);
+        updateVFXState();
+      });
+      
+      // Initialize VFX state
+      updateVFXState();
+      
+      // ===== VISITOR COUNTER =====
+      const counterEl = document.getElementById('visitor-counter');
+      
+      // Real API call
+      function updateCounterWithAPI() {
+        fetch('https://api.countapi.xyz/hit/valleytainment/productions')
+          .then(response => response.json())
+          .then(data => {
+            animateCounter(counterEl, data.value);
+          })
+          .catch(() => {
+            // Fallback to random number if API fails
+            animateCounter(counterEl, Math.floor(Math.random() * 5000) + 1000);
+          });
+      }
+      
+      // Animate counter
+      function animateCounter(element, target) {
+        const current = parseInt(element.textContent) || 0;
+        const increment = Math.max(1, Math.floor((target - current) / 30));
+        let count = current;
+        
+        const timer = setInterval(() => {
+          count += increment;
+          element.textContent = count.toLocaleString();
+          
+          if (count >= target) {
+            element.textContent = target.toLocaleString();
+            clearInterval(timer);
+          }
+        }, 30);
+      }
+      
+      // Start counter
+      updateCounterWithAPI();
+      
+      // Animate other counters
+      document.querySelectorAll('.counter:not(#visitor-counter)').forEach(counter => {
+        const target = parseInt(counter.textContent);
+        counter.textContent = '0';
+        
+        const observer = new IntersectionObserver(entries => {
+          if (entries[0].isIntersecting) {
+            animateCounter(counter, target);
+            observer.disconnect();
+          }
+        }, { threshold: 0.5 });
+        
+        observer.observe(counter);
+      });
+      
+      // ===== MODAL CONTROLS =====
+      const modals = {
+        'find-us-btn': 'find-us-modal',
+        'thrift-shop-btn': 'thrift-shop-modal'
+      };
+      
+      Object.entries(modals).forEach(([btnId, modalId]) => {
+        const btn = document.getElementById(btnId);
+        const modal = document.getElementById(modalId);
+        const closeBtn = modal.querySelector('.modal-close');
+        
+        btn.addEventListener('click', () => modal.classList.add('open'));
+        closeBtn.addEventListener('click', () => modal.classList.remove('open'));
+      });
+      
+      // Close modals with Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          document.querySelectorAll('.modal.open').forEach(modal => {
+            modal.classList.remove('open');
+          });
+        }
+      });
+      
+      // Close modal on outside click
+      window.addEventListener('click', function(e) {
+        document.querySelectorAll('.modal').forEach(modal => {
+          if (e.target === modal) {
+            modal.classList.remove('open');
+          }
+        });
+      });
+      
+      // ===== SCROLL EFFECTS =====
+      const scrollProgress = document.getElementById('scroll-progress');
+      const backToTop = document.querySelector('.back-to-top');
+      
+      window.addEventListener('scroll', () => {
+        // Update scroll progress bar
+        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrolled = (window.scrollY / scrollHeight) * 100;
+        scrollProgress.style.width = `${scrolled}%`;
+        
+        // Show/hide back to top button
+        if (window.scrollY > 300) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+        
+        // Reveal animations
+        document.querySelectorAll('.reveal-enhanced, .reveal-enhanced-left, .reveal-enhanced-right').forEach(el => {
+          const elementTop = el.getBoundingClientRect().top;
+          const elementVisible = 150;
+          
+          if (elementTop < window.innerHeight - elementVisible) {
+            el.classList.add('active');
+          }
+        });
+      });
+      
+      // Back to top functionality
+      backToTop.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      
+      // ===== DARK MODE TOGGLE =====
+      const darkModeToggle = document.getElementById('dark-mode-toggle');
+      const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+      const currentTheme = localStorage.getItem('theme');
+      
+      if (currentTheme === 'light') {
+        document.body.classList.add('light-mode');
+        darkModeToggle.textContent = '🌙';
+      } else {
+        darkModeToggle.textContent = '☀️';
+      }
+      
+      darkModeToggle.addEventListener('click', () => {
+        if (document.body.classList.contains('light-mode')) {
+          document.body.classList.remove('light-mode');
+          localStorage.setItem('theme', 'dark');
+          darkModeToggle.textContent = '☀️';
+        } else {
+          document.body.classList.add('light-mode');
+          localStorage.setItem('theme', 'light');
+          darkModeToggle.textContent = '🌙';
+        }
+      });
+      
+      // ===== MOBILE MENU =====
+      const menuToggle = document.querySelector('.mobile-menu-toggle');
+      const navMenu = document.querySelector('.nav-menu');
+      
+      menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        navMenu.classList.toggle('active');
+      });
+      
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!navMenu.contains(e.target) && !menuToggle.contains(e.target) && navMenu.classList.contains('active')) {
+          menuToggle.classList.remove('active');
+          navMenu.classList.remove('active');
+        }
+      });
+      
+      // ===== TABS FUNCTIONALITY =====
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      const tabPanes = document.querySelectorAll('.tab-pane');
+      
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const tabId = btn.getAttribute('data-tab');
+          
+          tabBtns.forEach(b => b.classList.remove('active'));
+          tabPanes.forEach(p => p.classList.remove('active'));
+          
+          btn.classList.add('active');
+          document.getElementById(tabId).classList.add('active');
+        });
+      });
+      
+      // ===== AI IMAGE GENERATOR =====
+      const generateBtn = document.getElementById('pi-generate');
+      const promptInput = document.getElementById('pi-prompt');
+      const resultDiv = document.getElementById('pi-result');
+      const actionsDiv = document.getElementById('pi-actions');
+      
+      generateBtn.addEventListener('click', async () => {
+        const prompt = promptInput.value.trim();
+        if (!prompt) {
+          resultDiv.innerHTML = '<p style="color:#ff5555;">Please enter a description first!</p>';
+          return;
+        }
+        
+        resultDiv.innerHTML = '<p><i class="fas fa-spinner fa-spin"></i> Generating your image...</p>';
+        actionsDiv.innerHTML = '';
+        
+        try {
+          // Using Pollinations.ai API
+          const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}`;
+          
+          // Create and display the image
+          resultDiv.innerHTML = '';
+          const img = document.createElement('img');
+          img.src = imageUrl;
+          img.alt = prompt;
+          
+          resultDiv.appendChild(img);
+          
+          // Create download button
+          const downloadBtn = document.createElement('a');
+          downloadBtn.href = imageUrl;
+          downloadBtn.download = `valleytainment-${prompt.replace(/\s+/g, '-').toLowerCase()}.png`;
+          downloadBtn.className = 'btn btn-small';
+          downloadBtn.innerHTML = '<i class="fas fa-download"></i> Download';
+          actionsDiv.appendChild(downloadBtn);
+          
+        } catch (error) {
+          console.error('Generation error:', error);
+          resultDiv.innerHTML = '<p style="color:#ff5555;">Error generating image. Please try again.</p>';
+        }
+      });
+      
+      // ===== EMAIL FORM =====
+      const emailForm = document.getElementById('email-form');
+      
+      emailForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+        
+        const mailtoLink = `mailto:Valleytainment@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`;
+        
+        window.location.href = mailtoLink;
+      });
+      
+      // ===== CARD TILT EFFECT =====
+      // Apply tilt effect to all card-tilt elements except the image generator
+      document.querySelectorAll('.card-tilt').forEach(card => {
+        // Skip the image generator container
+        if (card.closest('#pi-tab')) return;
+        
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          
+          const rotateX = (y - centerY) / 20;
+          const rotateY = (centerX - x) / 20;
+          
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+        });
+      });
+      
+      // ===== INITIALIZE VFX EFFECTS =====
+      initStarField();
+      initCursorTrail();
+      initLightningEffect();
+    });
+    
+    // ===== STAR FIELD ANIMATION =====
+    function initStarField() {
+      const canvas = document.getElementById('bg-canvas');
+      const ctx = canvas.getContext('2d');
+      let stars = [];
+      
+      // Resize canvas to window size
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        initStars();
+      }
+      
+      // Create stars
+      function initStars() {
+        stars = [];
+        const starCount = Math.floor(canvas.width * canvas.height / 1000);
+        
+        for (let i = 0; i < starCount; i++) {
+          stars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            radius: Math.random() * 1.5,
+            speed: Math.random() * 0.5,
+            brightness: Math.random(),
+            color: `hsl(${Math.random() * 360}, 80%, 80%)`
+          });
+        }
+      }
+      
+      // Animate stars
+      function animateStars() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        stars.forEach(star => {
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+          ctx.fillStyle = star.color;
+          ctx.globalAlpha = 0.5 + star.brightness * 0.5;
+          ctx.fill();
+          
+          // Move star
+          star.y += star.speed;
+          
+          // Reset star position if it goes off screen
+          if (star.y > canvas.height) {
+            star.y = 0;
+            star.x = Math.random() * canvas.width;
+          }
+        });
+        
+        requestAnimationFrame(animateStars);
+      }
+      
+      // Initialize
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+      animateStars();
+    }
+    
+    // ===== CURSOR TRAIL EFFECT =====
+    function initCursorTrail() {
+      const canvas = document.getElementById('cursor-trail');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let mouse = { x: 0, y: 0 };
+      
+      // Resize canvas to window size
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      
+      // Track mouse position
+      document.addEventListener('mousemove', function(e) {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+        
+        // Add particles on mouse move
+        addParticles(5);
+      });
+      
+      // Add particles
+      function addParticles(count) {
+        const colors = ['#ff00aa', '#3eff00', '#00c3ff', '#ffff00'];
+        
+        for (let i = 0; i < count; i++) {
+          particles.push({
+            x: mouse.x,
+            y: mouse.y,
+            size: Math.random() * 8 + 2,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            speedX: Math.random() * 6 - 3,
+            speedY: Math.random() * 6 - 3,
+            life: 100
+          });
+        }
+      }
+      
+      // Animate particles
+      function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          
+          ctx.fillStyle = p.color;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+          
+          p.x += p.speedX;
+          p.y += p.speedY;
+          p.life--;
+          p.size *= 0.98;
+          
+          if (p.life <= 0 || p.size <= 0.5) {
+            particles.splice(i, 1);
+            i--;
+          }
+        }
+        
+        requestAnimationFrame(animateParticles);
+      }
+      
+      // Initialize
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+      animateParticles();
+    }
+    
+    // ===== LIGHTNING EFFECT =====
+    function initLightningEffect() {
+      const canvas = document.getElementById('lightning-canvas');
+      const ctx = canvas.getContext('2d');
+      
+      // Resize canvas to window size
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      
+      const lightnings = [];
+      const colors = ['#00c3ff', '#ff00aa', '#3eff00'];
+      
+      function createLightning() {
+        const x = Math.random() * canvas.width;
+        const segments = Math.floor(Math.random() * 10) + 5;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        
+        lightnings.push({
+          x,
+          y: 0,
+          segments: [],
+          color,
+          alpha: 1,
+          completed: false
+        });
+        
+        // Create initial segments
+        const lastLightning = lightnings[lightnings.length - 1];
+        let lastY = 0;
+        
+        for (let i = 0; i < segments; i++) {
+          const segmentHeight = (canvas.height / segments) * (0.7 + Math.random() * 0.6);
+          lastY += segmentHeight;
+          
+          lastLightning.segments.push({
+            x1: x + (Math.random() * 40 - 20),
+            y1: lastY - segmentHeight,
+            x2: x + (Math.random() * 80 - 40),
+            y2: lastY,
+            width: Math.random() * 3 + 1
+          });
+        }
+      }
+      
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Randomly create new lightning
+        if (Math.random() < 0.02) {
+          createLightning();
+        }
+        
+        // Draw and update existing lightning
+        for (let i = 0; i < lightnings.length; i++) {
+          const lightning = lightnings[i];
+          
+          ctx.strokeStyle = lightning.color;
+          ctx.globalAlpha = lightning.alpha;
+          ctx.lineCap = 'round';
+          
+          lightning.segments.forEach(seg => {
+            ctx.lineWidth = seg.width;
+            ctx.beginPath();
+            ctx.moveTo(seg.x1, seg.y1);
+            ctx.lineTo(seg.x2, seg.y2);
+            ctx.stroke();
+          });
+          
+          // Fade out
+          lightning.alpha -= 0.01;
+          
+          if (lightning.alpha <= 0) {
+            lightnings.splice(i, 1);
+            i--;
+          }
+        }
+        
+        requestAnimationFrame(animate);
+      }
+      
+      // Initialize
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+      animate();
+    }
+  </script>
+</body>
+</html>

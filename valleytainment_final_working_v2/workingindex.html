@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Valleytainment Productions</title>
+  <meta name="description" content="Valleytainment Productions - Cutting-edge entertainment company specializing in content creation, talent management, and music production with an edgy, vibrant urban aesthetic." />
+
+  <!-- Favicon & Manifest -->
+  <link rel="icon" href="images/favicon.ico" />
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- Preconnect & Preload -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="css/main.css" as="style" />
+  <link rel="preload" href="images/logo.png" as="image" />
+
+  <!-- Critical Inline CSS -->
+  <style>
+    :root {
+      --neon1: #ff00aa;
+      --neon2: #3eff00;
+      --accent: #00c3ff;
+      --dark: #121212;
+      --light: #f8f8f8;
+      --glass: rgba(255, 255, 255, 0.1);
+      --font: 'Montserrat', sans-serif;
+      --trans: all .3s ease;
+    }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family:var(--font);
+      background:var(--dark);
+      color:var(--light);
+      min-height:100vh;
+      overflow-x:auto;
+    }
+    a { color:var(--accent); transition:var(--trans); }
+    a:hover { color:var(--neon2); }
+    .skip-link {
+      position:absolute; top:-40px; left:0;
+      background:var(--neon1); color:#fff;
+      padding:.5rem; z-index:100; transition:top .3s;
+    }
+    .skip-link:focus { top:0; }
+    :focus-visible {
+      outline:3px solid var(--neon1);
+      outline-offset:3px;
+    }
+    /* Canvas & VFX holders */
+    #bg-canvas,#cursor-trail {
+      position:fixed; top:0; left:0;
+      width:100vw; height:100vh;
+      pointer-events:none; z-index:-1;
+    }
+    #scroll-progress {
+      position:fixed; top:0; left:0;
+      height:4px; width:0;
+      background:var(--accent); z-index:9999;
+    }
+    #dark-mode-toggle {
+      position:fixed; bottom:1rem; right:1rem;
+      background:var(--glass); border:none;
+      color:var(--light); padding:.5rem;
+      font-size:1.2rem; cursor:pointer; z-index:1000;
+    }
+    /* Tabs & Sections */
+    .tabs-content .tab-pane { display:none; }
+    .tabs-content .tab-pane.active { display:block; }
+    /* AI Image Generator */
+    .pi-result {
+      margin-top:1rem; background:var(--glass);
+      border-radius:8px; overflow:auto;
+      min-height:200px; display:flex;
+      align-items:center; justify-content:center;
+    }
+    .pi-result img { max-width:100%; max-height:500px; }
+    .pi-actions { margin-top:.5rem; display:flex; gap:.5rem; flex-wrap:wrap; }
+    /* Modals */
+    .modal {
+      position:fixed; top:0; left:0;
+      width:100%; height:100%;
+      background:rgba(0,0,0,0.6);
+      display:none; align-items:center;
+      justify-content:center; z-index:2000;
+    }
+    .modal.open { display:flex; }
+    .modal-content {
+      background:var(--dark); padding:2rem;
+      border-radius:8px; max-width:90%; max-height:90%;
+      overflow:auto; position:relative;
+    }
+    .modal-close {
+      position:absolute; top:1rem; right:1rem;
+      background:none; border:none; color:var(--light);
+      font-size:1.5rem; cursor:pointer;
+    }
+    /* Find Us & Thrift Shop grids */
+    .find-us-grid, .thrift-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+      gap:1rem; margin-top:1rem;
+    }
+    .find-us-card, .thrift-card {
+      background:var(--glass); padding:1rem;
+      border-radius:8px; text-align:center;
+      transition:var(--trans);
+    }
+    .find-us-card:hover, .thrift-card:hover {
+      background:rgba(255,255,255,0.2);
+    }
+    .find-us-card i, .thrift-card i {
+      font-size:2rem; margin-bottom:.5rem;
+    }
+  </style>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="css/main.css" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="css/enhanced-visual-effects.css" />
+  <link rel="stylesheet" href="css/placeholder-image.css" />
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+  <canvas id="cursor-trail" aria-hidden="true"></canvas>
+  <div id="scroll-progress" aria-hidden="true"></div>
+  <button id="dark-mode-toggle" aria-label="Toggle dark mode">🌓</button>
+
+  <!-- HEADER -->
+  <header class="glass-enhanced" role="banner">
+    <div class="container header-content">
+      <a href="#hero" class="logo">
+        <img src="images/logo.png" alt="Valleytainment Logo" loading="lazy" />
+      </a>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      <nav class="nav-menu">
+        <ul class="nav-list">
+          <li><a href="#hero">Home</a></li>
+          <li class="has-dropdown">
+            <a href="#about" class="dropdown-toggle">About</a>
+            <ul class="dropdown">
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#team">Our Team</a></li>
+              <li><a href="#recording-artists">Artists</a></li>
+              <li><a href="#management">Management</a></li>
+              <li><a href="#partners">Partners</a></li>
+            </ul>
+          </li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#merchandise">Merchandise</a></li>
+          <li><a href="#interactive">Interactive</a></li>
+          <li><a href="#social">Connect</a></li>
+          <li><button id="find-us-btn" class="btn btn-small">Find Us</button></li>
+          <li><button id="thrift-shop-btn" class="btn btn-small">Thrift Shop</button></li>
+          <li><a href="#idea-form" class="btn btn-primary">Contact Us</a></li>
+          <li><a href="https://cash.app/$VALLEYTAINMENT" target="_blank" class="btn btn-secondary">Donate</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- FIND US MODAL -->
+  <div id="find-us-modal" class="modal">
+    <div class="modal-content glass-enhanced">
+      <button class="modal-close" aria-label="Close">&times;</button>
+      <h2>Find Us On</h2>
+      <div class="find-us-grid">
+        <a href="https://www.instagram.com/valleytainment/profilecard/?igsh=czI0MjgwYmpueDJr" target="_blank" class="find-us-card">
+          <i class="fab fa-instagram"></i><div>Instagram</div>
+        </a>
+        <a href="https://mastodon.social/@valleytainment" target="_blank" class="find-us-card">
+          <i class="fab fa-mastodon"></i><div>Mastodon</div>
+        </a>
+        <a href="https://scoopzapp.com/@303300539?s=a7&pd=0KWcKBda&hl=en_US" target="_blank" class="find-us-card">
+          <i class="fas fa-rss"></i><div>Scoopz</div>
+        </a>
+        <a href="https://v.lemon8-app.com/al/OgFUFrecbp" target="_blank" class="find-us-card">
+          <i class="fas fa-lemon"></i><div>Lemon8</div>
+        </a>
+        <a href="https://www.snapchat.com/add/valleytainmentt?share_id=ybpFY6B9FLA&locale=en-US" target="_blank" class="find-us-card">
+          <i class="fab fa-snapchat"></i><div>Snapchat</div>
+        </a>
+        <a href="https://www.facebook.com/share/1HqDpQweeL/" target="_blank" class="find-us-card">
+          <i class="fab fa-facebook"></i><div>Facebook</div>
+        </a>
+        <a href="https://x.com/valleytainment?s=09" target="_blank" class="find-us-card">
+          <i class="fab fa-x"></i><div>X</div>
+        </a>
+        <a href="https://www.threads.net/@valleytainment" target="_blank" class="find-us-card">
+          <i class="fas fa-hashtag"></i><div>Threads</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- THRIFT SHOP MODAL -->
+  <div id="thrift-shop-modal" class="modal">
+    <div class="modal-content glass-enhanced">
+      <button class="modal-close" aria-label="Close">&times;</button>
+      <h2>Thrift Shop</h2>
+      <p>Liquidation Clean‑out Sales</p>
+      <div class="thrift-grid">
+        <a href="https://whatnot.com/s/v51toNty" target="_blank" class="thrift-card">
+          <i class="fas fa-shopping-bag"></i><div>Whatnot</div>
+        </a>
+        <a href="https://www.ebay.com/usr/valleytainmentthrifts" target="_blank" class="thrift-card">
+          <i class="fas fa-store"></i><div>eBay</div>
+        </a>
+        <a href="https://www.mercari.com/u/valleytainment?sv=0" target="_blank" class="thrift-card">
+          <i class="fas fa-tags"></i><div>Mercari</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main id="main" role="main">
+
+    <!-- HERO -->
+    <section id="hero" class="hero-section hero-gradient-enhanced">
+      <div class="lightning-container-enhanced"><div class="lightning-enhanced"></div></div>
+      <div class="container hero-content">
+        <h1 class="hero-title neon-text-enhanced" data-text="Valleytainment Productions">Valleytainment Productions</h1>
+        <p class="hero-subtitle">Pittsburgh, PA & Worldwide – Founded 2012, Established 2018</p>
+        <div class="hero-buttons">
+          <a href="#services" class="btn btn-primary magnetic-btn-enhanced">Our Services</a>
+          <a href="#idea-form" class="btn btn-secondary magnetic-btn-enhanced">Contact Us</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number counter" id="visitor-counter">0</span>
+            <span class="stat-label">Visitors</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number counter">1500</span>
+            <span class="stat-label">Projects</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number counter">250</span>
+            <span class="stat-label">Clients</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="about-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title reveal-enhanced">About Valleytainment</h2>
+          <p class="section-subtitle reveal-enhanced">Our story, mission, and vision</p>
+        </div>
+        <div class="about-content">
+          <div class="about-image reveal-enhanced-left card-tilt">
+            <img src="images/about-image.jpg" alt="Valleytainment team at work" loading="lazy" />
+          </div>
+          <div class="about-text reveal-enhanced-right">
+            <h3>Who We Are</h3>
+            <p>Valleytainment Productions is a cutting-edge entertainment company founded in 2012 and established in 2018. We specialize in content creation, talent management, music/video production, videography, podcasting, graphic design, event planning, and more.</p>
+            <h3>Our Mission</h3>
+            <p>We're dedicated to pushing creative boundaries and delivering high-quality entertainment experiences that resonate with modern audiences. Our love & support for local talent and creativity sets us apart, and our monster character branding plus neon color scheme stands out in the industry.</p>
+            <h3>Our Vision</h3>
+            <p>To become the leading entertainment production company known for innovative content, exceptional talent management, and trend-setting merchandise that captures our unique brand identity, while showing love and support to all.</p>
+            <ul class="about-features">
+              <li>Content Creation</li>
+              <li>Talent Management</li>
+              <li>Music/Video Production</li>
+              <li>Event Planning</li>
+              <li>Graphic Design</li>
+              <li>Podcasting & More</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="services-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title reveal-enhanced">Our Services</h2>
+          <p class="section-subtitle reveal-enhanced">What we offer to our clients</p>
+        </div>
+        <div class="services-grid">
+          <div class="service-card glass-enhanced card-tilt reveal-enhanced">
+            <i class="fas fa-video service-icon"></i><h3>Content Creation</h3>
+          </div>
+          <div class="service-card glass-enhanced card-tilt reveal-enhanced">
+            <i class="fas fa-users service-icon"></i><h3>Talent Management</h3>
+          </div>
+          <div class="service-card glass-enhanced card-tilt reveal-enhanced">
+            <i class="fas fa-music service-icon"></i><h3>Music/Video Production</h3>
+          </div>
+          <div class="service-card glass-enhanced card-tilt reveal-enhanced">
+            <i class="fas fa-calendar-alt service-icon"></i><h3>Event Planning</h3>
+          </div>
+          <div class="service-card glass-enhanced card-tilt reveal-enhanced">
+            <i class="fas fa-paint-brush service-icon"></i><h3>Graphic Design</h3>
+          </div>
+          <div class="service-card glass-enhanced card-tilt reveal-enhanced">
+            <i class="fas fa-podcast service-icon"></i><h3>Podcasting</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MERCHANDISE -->
+    <section id="merchandise" class="merchandise-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title reveal-enhanced">Merchandise</h2>
+        </div>
+        <div class="merchandise-grid">
+          <div class="merchandise-item card-tilt reveal-enhanced">
+            <img src="images/merch-tshirt.jpg" alt="Monster Logo T-Shirt" loading="lazy" />
+            <h4>Monster Logo T-Shirt</h4><p>$29.99</p>
+          </div>
+          <div class="merchandise-item card-tilt reveal-enhanced">
+            <img src="images/merch-hoodie.jpg" alt="Neon Splash Hoodie" loading="lazy" />
+            <h4>Neon Splash Hoodie</h4><p>$59.99</p>
+          </div>
+          <div class="merchandise-item card-tilt reveal-enhanced">
+            <img src="images/merch-cap.jpg" alt="Urban Monster Cap" loading="lazy" />
+            <h4>Urban Monster Cap</h4><p>$24.99</p>
+          </div>
+          <div class="merchandise-item card-tilt reveal-enhanced">
+            <img src="images/merch-accessory.jpg" alt="LED Glow Wristband" loading="lazy" />
+            <h4>LED Glow Wristband</h4><p>$19.99</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE (Tabs + Generator) -->
+    <section id="interactive" class="interactive-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title reveal-enhanced">Interactive Features</h2>
+          <p class="section-subtitle reveal-enhanced">Experience the Valleytainment magic</p>
+        </div>
+        <div class="tabs-container">
+          <div class="tabs-nav">
+            <button class="tab-btn active" data-tab="pi-tab">AI Image Generator</button>
+            <button class="tab-btn" data-tab="music-tab">Music Visualizer</button>
+            <button class="tab-btn" data-tab="ar-tab">AR Experience</button>
+          </div>
+          <div class="tabs-content">
+            <div class="tab-pane active" id="pi-tab">
+              <div class="image-generator-simple glass-enhanced card-tilt">
+                <div class="form-group">
+                  <label for="pi-prompt">Describe your image:</label>
+                  <textarea id="pi-prompt" rows="2" placeholder="e.g., A neon cityscape at night"></textarea>
+                </div>
+                <button id="pi-generate" class="btn btn-primary">Generate</button>
+                <div id="pi-result" class="pi-result"><p>Enter prompt & click Generate.</p></div>
+                <div id="pi-actions" class="pi-actions"></div>
+              </div>
+            </div>
+            <div class="tab-pane" id="music-tab">
+              <div class="visualizer-placeholder"><i class="fas fa-music"></i><p>Coming Soon</p></div>
+            </div>
+            <div class="tab-pane" id="ar-tab">
+              <div class="ar-placeholder"><i class="fas fa-vr-cardboard"></i><p>Coming Soon</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IDEA / CONTACT FORM -->
+    <section id="idea-form" class="idea-form-section">
+      <div class="container">
+        <h2 class="section-title reveal-enhanced">Share Your Idea</h2>
+        <form action="mailto:Valleytainment@gmail.com" method="post" enctype="text/plain" class="form-container glass-enhanced">
+          <div class="form-group"><label for="idea-name">Name</label><input id="idea-name" name="Name" type="text" required /></div>
+          <div class="form-group"><label for="idea-email">Email</label><input id="idea-email" name="Email" type="email" required /></div>
+          <div class="form-group"><label for="idea-subject">Subject</label><input id="idea-subject" name="Subject" type="text" required /></div>
+          <div class="form-group"><label for="idea-message">Your Idea</label><textarea id="idea-message" name="Message" rows="5" required></textarea></div>
+          <button type="submit" class="btn btn-primary">Send Idea</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- CONTACT INFO -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <div class="contact-info glass-enhanced">
+          <p><i class="fas fa-map-marker-alt"></i> Pittsburgh, PA & Worldwide</p>
+          <p><i class="fas fa-envelope"></i> <a href="mailto:Valleytainment@gmail.com">Valleytainment@gmail.com</a></p>
+          <p><i class="fas fa-clock"></i> Mon–Fri: 9 AM–6 PM EST</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer-section" role="contentinfo">
+    <div class="container">
+      <p>&copy; 2025 Valleytainment Productions. All rights reserved.</p>
+      <div class="footer-social">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BACK TO TOP -->
+  <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+  <!-- THREE.JS & VFX SCRIPT -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
+  <script src="js/interactive.js" defer></script>
+
+  <!-- INLINE CONTROLS -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Tabs
+      document.querySelectorAll('.tabs-container').forEach(c => {
+        const btns = c.querySelectorAll('.tab-btn'),
+              panes = c.querySelectorAll('.tab-pane');
+        btns.forEach(b => b.onclick = () => {
+          btns.forEach(x=>x.classList.remove('active'));
+          panes.forEach(p=>p.classList.remove('active'));
+          b.classList.add('active');
+          c.querySelector('#' + b.dataset.tab).classList.add('active');
+        });
+      });
+
+      // Modals
+      [['find-us-btn','find-us-modal'],['thrift-shop-btn','thrift-shop-modal']].forEach(([btn, mid])=>{
+        const m = document.getElementById(mid);
+        document.getElementById(btn).onclick = () => m.classList.add('open');
+        m.querySelector('.modal-close').onclick = () => m.classList.remove('open');
+      });
+
+      // AI Generator
+      const baseUrl = 'https://image.pollinations.ai/prompt/';
+      const btnGen = document.getElementById('pi-generate');
+      const result = document.getElementById('pi-result');
+      const actions = document.getElementById('pi-actions');
+
+      btnGen.addEventListener('click', async () => {
+        const prompt = document.getElementById('pi-prompt').value.trim();
+        if (!prompt) return alert('Please enter a description!');
+        const url = baseUrl + encodeURIComponent(prompt);
+        result.innerHTML = '<p>Loading…</p>';
+        actions.innerHTML = '';
+        try {
+          const res = await fetch(url);
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const blob = await res.blob();
+          const imgURL = URL.createObjectURL(blob);
+          result.innerHTML = '';
+          const img = new Image();
+          img.src = imgURL;
+          img.alt = prompt;
+          img.onload = () => URL.revokeObjectURL(imgURL);
+          result.appendChild(img);
+          const a = document.createElement('a');
+          a.href = imgURL;
+          a.download = prompt.replace(/\W+/g,'_') + '.png';
+          a.className = 'btn btn-small';
+          a.textContent = 'Download Image';
+          actions.appendChild(a);
+        } catch (err) {
+          console.error(err);
+          result.innerHTML = '<p style="color:#f55;">Failed to load image. Please try again.</p>';
+        }
+      });
+
+      // Dark mode
+      document.getElementById('dark-mode-toggle').onclick = () => document.body.classList.toggle('dark');
+
+      // Scroll progress
+      window.addEventListener('scroll', () => {
+        const pct = window.scrollY/(document.body.scrollHeight - window.innerHeight)*100;
+        document.getElementById('scroll-progress').style.width = pct + '%';
+      });
+
+      // Visitor counter
+      const vc = document.getElementById('visitor-counter');
+      let v=0, target=12345;
+      (function step(){
+        if(v<target){
+          v += Math.ceil(target/200);
+          vc.textContent = v>target?target:v;
+          requestAnimationFrame(step);
+        }
+      })();
+    });
+  </script>
+</body>
+</html>

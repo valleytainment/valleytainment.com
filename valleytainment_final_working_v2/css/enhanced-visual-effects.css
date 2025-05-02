@@ -1,0 +1,820 @@
+/* 
+ * =====================================================================
+ * | VALLEYTAINMENT PRODUCTIONS - ENHANCED VISUAL EFFECTS              |
+ * | Version: 2.0.0                                                    |
+ * | Last Updated: April 19, 2025                                      |
+ * =====================================================================
+ * | This file contains advanced visual effects and animations for     |
+ * | the Valleytainment website including neon effects, glassmorphism, |
+ * | 3D tilt cards, reveal animations, and more.                       |
+ * =====================================================================
+ */
+
+/* ===== TABLE OF CONTENTS =====
+ * 1. Neon Text Effects
+ * 2. Glassmorphism
+ * 3. Card Tilt Effects
+ * 4. Reveal Animations
+ * 5. Magnetic Buttons
+ * 6. Glitch Effects
+ * 7. Particle Effects
+ * 8. Custom Cursor
+ * 9. Scroll Effects
+ * 10. Hover Effects
+ * 11. Animation Keyframes
+ * ============================= */
+
+/* ===== 1. NEON TEXT EFFECTS ===== */
+.neon-text-enhanced {
+  color: var(--light);
+  text-shadow:
+    0 0 5px var(--neon1),
+    0 0 10px var(--neon1),
+    0 0 20px var(--neon1),
+    0 0 40px var(--neon1);
+  animation: neonPulse 2s ease-in-out infinite alternate;
+}
+
+.neon-text-enhanced.alt {
+  text-shadow:
+    0 0 5px var(--neon2),
+    0 0 10px var(--neon2),
+    0 0 20px var(--neon2),
+    0 0 40px var(--neon2);
+  animation: neonPulseAlt 2s ease-in-out infinite alternate;
+}
+
+.neon-text-enhanced.accent {
+  text-shadow:
+    0 0 5px var(--accent),
+    0 0 10px var(--accent),
+    0 0 20px var(--accent),
+    0 0 40px var(--accent);
+  animation: neonPulseAccent 2s ease-in-out infinite alternate;
+}
+
+.neon-text-enhanced.flicker {
+  animation: neonFlicker 3s linear infinite;
+}
+
+.neon-border {
+  border: 2px solid var(--neon1);
+  box-shadow:
+    0 0 5px var(--neon1),
+    0 0 10px var(--neon1);
+  animation: borderPulse 2s ease-in-out infinite alternate;
+}
+
+/* ===== 2. GLASSMORPHISM ===== */
+.glass-enhanced {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: var(--transition-medium);
+}
+
+.glass-enhanced:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-enhanced.dark {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-enhanced.dark:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.glass-enhanced.neon-border {
+  border: 1px solid var(--neon1);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 0 5px var(--neon1),
+    0 0 10px var(--neon1);
+}
+
+/* ===== 3. CARD TILT EFFECTS ===== */
+.card-tilt {
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+  transition: transform 0.3s ease;
+}
+
+.card-tilt .card-content {
+  transform: translateZ(20px);
+}
+
+.card-tilt .card-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.card-tilt:hover .card-shine {
+  opacity: 1;
+}
+
+/* ===== 4. REVEAL ANIMATIONS ===== */
+.reveal-enhanced {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal-enhanced.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-enhanced.left {
+  transform: translateX(-30px);
+}
+
+.reveal-enhanced.right {
+  transform: translateX(30px);
+}
+
+.reveal-enhanced.scale {
+  transform: scale(0.9);
+}
+
+.reveal-enhanced.left.revealed,
+.reveal-enhanced.right.revealed,
+.reveal-enhanced.scale.revealed {
+  transform: translateX(0) scale(1);
+}
+
+.reveal-enhanced.delay-100 {
+  transition-delay: 0.1s;
+}
+
+.reveal-enhanced.delay-200 {
+  transition-delay: 0.2s;
+}
+
+.reveal-enhanced.delay-300 {
+  transition-delay: 0.3s;
+}
+
+.reveal-enhanced.delay-400 {
+  transition-delay: 0.4s;
+}
+
+.reveal-enhanced.delay-500 {
+  transition-delay: 0.5s;
+}
+
+/* ===== 5. MAGNETIC BUTTONS ===== */
+.magnetic-btn-enhanced {
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transform: perspective(800px);
+  transition: transform 0.2s;
+}
+
+.magnetic-btn-enhanced::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.magnetic-btn-enhanced:hover::before {
+  opacity: 1;
+}
+
+.magnetic-btn-enhanced span {
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== 6. GLITCH EFFECTS ===== */
+.glitch-enhanced {
+  position: relative;
+  animation: glitchText 3s infinite;
+}
+
+.glitch-enhanced::before,
+.glitch-enhanced::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-enhanced::before {
+  left: 2px;
+  text-shadow: -2px 0 var(--neon1);
+  animation: glitchBefore 3s infinite;
+  clip: rect(44px, 450px, 56px, 0);
+}
+
+.glitch-enhanced::after {
+  left: -2px;
+  text-shadow: -2px 0 var(--neon2);
+  animation: glitchAfter 2.5s infinite;
+  clip: rect(24px, 450px, 36px, 0);
+}
+
+/* ===== 7. PARTICLE EFFECTS ===== */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background-color: var(--neon1);
+  pointer-events: none;
+  opacity: 0.7;
+  animation: particleFade 1.5s ease-out forwards;
+}
+
+.particle.alt {
+  background-color: var(--neon2);
+}
+
+.particle.accent {
+  background-color: var(--accent);
+}
+
+/* ===== 8. CUSTOM CURSOR ===== */
+.custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--neon1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+  transition: width 0.2s, height 0.2s, background-color 0.2s;
+  mix-blend-mode: difference;
+}
+
+.cursor-dot {
+  position: fixed;
+  width: 5px;
+  height: 5px;
+  background-color: var(--neon1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 10000;
+  transition: transform 0.1s;
+}
+
+.cursor-trail {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--neon1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.5;
+  transition: opacity 0.5s;
+}
+
+/* ===== 9. SCROLL EFFECTS ===== */
+.parallax {
+  position: relative;
+  overflow: hidden;
+}
+
+.parallax-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.1s;
+}
+
+.parallax-layer.depth-1 {
+  transform: translateY(calc(var(--scroll-y) * -0.1px));
+}
+
+.parallax-layer.depth-2 {
+  transform: translateY(calc(var(--scroll-y) * -0.2px));
+}
+
+.parallax-layer.depth-3 {
+  transform: translateY(calc(var(--scroll-y) * -0.3px));
+}
+
+.scroll-scale {
+  transform: scale(calc(1 + (var(--scroll-y) * 0.0005)));
+  transform-origin: center center;
+}
+
+.scroll-rotate {
+  transform: rotate(calc(var(--scroll-y) * 0.05deg));
+}
+
+/* ===== 10. HOVER EFFECTS ===== */
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-rotate {
+  transition: transform 0.3s ease;
+}
+
+.hover-rotate:hover {
+  transform: rotate(5deg);
+}
+
+.hover-glow {
+  transition: box-shadow 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow:
+    0 0 5px var(--neon1),
+    0 0 10px var(--neon1),
+    0 0 20px var(--neon1);
+}
+
+.hover-neon-text {
+  transition: text-shadow 0.3s ease;
+}
+
+.hover-neon-text:hover {
+  text-shadow:
+    0 0 5px var(--neon1),
+    0 0 10px var(--neon1),
+    0 0 20px var(--neon1);
+}
+
+.hover-underline {
+  position: relative;
+}
+
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--neon1);
+  transition: width 0.3s ease;
+}
+
+.hover-underline:hover::after {
+  width: 100%;
+}
+
+/* ===== 11. ANIMATION KEYFRAMES ===== */
+@keyframes neonPulse {
+  0% {
+    text-shadow:
+      0 0 5px var(--neon1),
+      0 0 10px var(--neon1),
+      0 0 20px var(--neon1),
+      0 0 40px var(--neon1);
+  }
+  100% {
+    text-shadow:
+      0 0 5px var(--neon1),
+      0 0 15px var(--neon1),
+      0 0 30px var(--neon1),
+      0 0 60px var(--neon1);
+  }
+}
+
+@keyframes neonPulseAlt {
+  0% {
+    text-shadow:
+      0 0 5px var(--neon2),
+      0 0 10px var(--neon2),
+      0 0 20px var(--neon2),
+      0 0 40px var(--neon2);
+  }
+  100% {
+    text-shadow:
+      0 0 5px var(--neon2),
+      0 0 15px var(--neon2),
+      0 0 30px var(--neon2),
+      0 0 60px var(--neon2);
+  }
+}
+
+@keyframes neonPulseAccent {
+  0% {
+    text-shadow:
+      0 0 5px var(--accent),
+      0 0 10px var(--accent),
+      0 0 20px var(--accent),
+      0 0 40px var(--accent);
+  }
+  100% {
+    text-shadow:
+      0 0 5px var(--accent),
+      0 0 15px var(--accent),
+      0 0 30px var(--accent),
+      0 0 60px var(--accent);
+  }
+}
+
+@keyframes neonFlicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow:
+      0 0 5px var(--neon1),
+      0 0 10px var(--neon1),
+      0 0 20px var(--neon1),
+      0 0 40px var(--neon1);
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+  }
+}
+
+@keyframes borderPulse {
+  0% {
+    box-shadow:
+      0 0 5px var(--neon1),
+      0 0 10px var(--neon1);
+  }
+  100% {
+    box-shadow:
+      0 0 5px var(--neon1),
+      0 0 10px var(--neon1),
+      0 0 15px var(--neon1);
+  }
+}
+
+@keyframes glitchText {
+  0%, 100% {
+    transform: none;
+    opacity: 1;
+  }
+  20% {
+    transform: skewX(-15deg);
+    opacity: 0.9;
+  }
+  40% {
+    transform: skewX(10deg);
+    opacity: 1;
+  }
+  60% {
+    transform: skewX(-5deg);
+    opacity: 0.9;
+  }
+  80% {
+    transform: skewX(5deg);
+    opacity: 1;
+  }
+}
+
+@keyframes glitchBefore {
+  0% {
+    clip: rect(44px, 450px, 56px, 0);
+  }
+  5% {
+    clip: rect(24px, 450px, 36px, 0);
+  }
+  10% {
+    clip: rect(54px, 450px, 66px, 0);
+  }
+  15% {
+    clip: rect(74px, 450px, 86px, 0);
+  }
+  20% {
+    clip: rect(34px, 450px, 46px, 0);
+  }
+  25% {
+    clip: rect(14px, 450px, 26px, 0);
+  }
+  30% {
+    clip: rect(64px, 450px, 76px, 0);
+  }
+  35% {
+    clip: rect(84px, 450px, 96px, 0);
+  }
+  40% {
+    clip: rect(4px, 450px, 16px, 0);
+  }
+  45% {
+    clip: rect(94px, 450px, 106px, 0);
+  }
+  50% {
+    clip: rect(54px, 450px, 66px, 0);
+  }
+  55% {
+    clip: rect(24px, 450px, 36px, 0);
+  }
+  60% {
+    clip: rect(44px, 450px, 56px, 0);
+  }
+  65% {
+    clip: rect(84px, 450px, 96px, 0);
+  }
+  70% {
+    clip: rect(4px, 450px, 16px, 0);
+  }
+  75% {
+    clip: rect(64px, 450px, 76px, 0);
+  }
+  80% {
+    clip: rect(94px, 450px, 106px, 0);
+  }
+  85% {
+    clip: rect(34px, 450px, 46px, 0);
+  }
+  90% {
+    clip: rect(74px, 450px, 86px, 0);
+  }
+  95% {
+    clip: rect(14px, 450px, 26px, 0);
+  }
+  100% {
+    clip: rect(44px, 450px, 56px, 0);
+  }
+}
+
+@keyframes glitchAfter {
+  0% {
+    clip: rect(24px, 450px, 36px, 0);
+  }
+  5% {
+    clip: rect(54px, 450px, 66px, 0);
+  }
+  10% {
+    clip: rect(74px, 450px, 86px, 0);
+  }
+  15% {
+    clip: rect(34px, 450px, 46px, 0);
+  }
+  20% {
+    clip: rect(14px, 450px, 26px, 0);
+  }
+  25% {
+    clip: rect(64px, 450px, 76px, 0);
+  }
+  30% {
+    clip: rect(84px, 450px, 96px, 0);
+  }
+  35% {
+    clip: rect(4px, 450px, 16px, 0);
+  }
+  40% {
+    clip: rect(94px, 450px, 106px, 0);
+  }
+  45% {
+    clip: rect(54px, 450px, 66px, 0);
+  }
+  50% {
+    clip: rect(24px, 450px, 36px, 0);
+  }
+  55% {
+    clip: rect(44px, 450px, 56px, 0);
+  }
+  60% {
+    clip: rect(84px, 450px, 96px, 0);
+  }
+  65% {
+    clip: rect(4px, 450px, 16px, 0);
+  }
+  70% {
+    clip: rect(64px, 450px, 76px, 0);
+  }
+  75% {
+    clip: rect(94px, 450px, 106px, 0);
+  }
+  80% {
+    clip: rect(34px, 450px, 46px, 0);
+  }
+  85% {
+    clip: rect(74px, 450px, 86px, 0);
+  }
+  90% {
+    clip: rect(14px, 450px, 26px, 0);
+  }
+  95% {
+    clip: rect(44px, 450px, 56px, 0);
+  }
+  100% {
+    clip: rect(24px, 450px, 36px, 0);
+  }
+}
+
+@keyframes particleFade {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+@keyframes floatAnimation {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes rotateAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulseAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes shakeAnimation {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInDown {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Apply animations to elements */
+.float {
+  animation: floatAnimation 3s ease-in-out infinite;
+}
+
+.rotate {
+  animation: rotateAnimation 10s linear infinite;
+}
+
+.pulse {
+  animation: pulseAnimation 2s ease-in-out infinite;
+}
+
+.shake {
+  animation: shakeAnimation 0.5s ease-in-out;
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+.fade-out {
+  animation: fadeOut 1s ease-in-out forwards;
+}
+
+.slide-in-left {
+  animation: slideInLeft 1s ease-in-out forwards;
+}
+
+.slide-in-right {
+  animation: slideInRight 1s ease-in-out forwards;
+}
+
+.slide-in-up {
+  animation: slideInUp 1s ease-in-out forwards;
+}
+
+.slide-in-down {
+  animation: slideInDown 1s ease-in-out forwards;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .neon-text-enhanced,
+  .neon-border,
+  .glitch-enhanced,
+  .glitch-enhanced::before,
+  .glitch-enhanced::after,
+  .particle,
+  .float,
+  .rotate,
+  .pulse,
+  .shake,
+  .fade-in,
+  .fade-out,
+  .slide-in-left,
+  .slide-in-right,
+  .slide-in-up,
+  .slide-in-down {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .reveal-enhanced {
+    opacity: 1;
+    transform: none !important;
+    transition: none !important;
+  }
+}

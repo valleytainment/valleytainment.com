@@ -1,0 +1,852 @@
+/* 
+ * =====================================================================
+ * | VALLEYTAINMENT PRODUCTIONS - RESPONSIVE DESIGN                    |
+ * | Version: 2.0.0                                                    |
+ * | Last Updated: April 19, 2025                                      |
+ * =====================================================================
+ * | This file contains additional responsive design improvements      |
+ * | to ensure the website looks and functions perfectly on all        |
+ * | device sizes from mobile phones to large desktop screens.         |
+ * =====================================================================
+ */
+
+/* ===== TABLE OF CONTENTS =====
+ * 1. Mobile-First Enhancements
+ * 2. Tablet Optimizations
+ * 3. Desktop Refinements
+ * 4. Large Screen Adaptations
+ * 5. Device-Specific Fixes
+ * 6. Orientation Handling
+ * 7. High-DPI Screen Support
+ * 8. Print Styles
+ * ============================= */
+
+/* ===== 1. MOBILE-FIRST ENHANCEMENTS ===== */
+/* Base mobile improvements (up to 575px) */
+@media (max-width: 575px) {
+  /* Typography adjustments */
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  h3 {
+    font-size: 1.75rem;
+  }
+  
+  /* Spacing adjustments */
+  section {
+    padding: var(--space-xl) 0;
+  }
+  
+  .container {
+    padding: 0 var(--space-md);
+  }
+  
+  /* Header & Navigation */
+  .logo img {
+    height: 30px;
+  }
+  
+  header.scrolled .logo img {
+    height: 25px;
+  }
+  
+  /* Hero section */
+  .hero {
+    min-height: 80vh;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: var(--font-size-md);
+  }
+  
+  .hero-cta {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  
+  .hero-cta .btn {
+    width: 100%;
+  }
+  
+  /* Service cards */
+  .service-card {
+    padding: var(--space-lg);
+  }
+  
+  /* Merchandise section */
+  .merch-details {
+    padding: var(--space-md);
+  }
+  
+  /* Team section */
+  .team-image {
+    width: 120px;
+    height: 120px;
+  }
+  
+  /* Form elements */
+  input, textarea, select {
+    padding: var(--space-sm);
+  }
+  
+  /* Buttons */
+  .btn {
+    padding: var(--space-sm) var(--space-lg);
+  }
+  
+  /* Modal */
+  .modal-content {
+    width: 95%;
+    padding: var(--space-lg);
+  }
+  
+  /* Chatbot */
+  .chatbot-container {
+    height: 400px;
+  }
+  
+  .message-content {
+    max-width: 85%;
+  }
+  
+  /* Image generator */
+  .image-gen-container {
+    padding: var(--space-md);
+  }
+  
+  /* Footer */
+  footer {
+    padding: var(--space-xl) 0 var(--space-md);
+  }
+  
+  /* Utility classes */
+  .hidden-xs {
+    display: none !important;
+  }
+  
+  .visible-xs {
+    display: block !important;
+  }
+  
+  /* Fix for overflow issues */
+  body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+  
+  /* Improve tap targets */
+  .nav-list a,
+  .footer-column a,
+  .social-links a {
+    padding: var(--space-sm) var(--space-md);
+    display: block;
+  }
+  
+  /* Adjust grid gaps */
+  .grid {
+    gap: var(--space-md);
+  }
+}
+
+/* ===== 2. TABLET OPTIMIZATIONS ===== */
+/* Small tablets (576px - 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+  /* Typography adjustments */
+  h1 {
+    font-size: 3rem;
+  }
+  
+  h2 {
+    font-size: 2.25rem;
+  }
+  
+  /* Spacing adjustments */
+  section {
+    padding: var(--space-2xl) 0;
+  }
+  
+  /* Hero section */
+  .hero {
+    min-height: 85vh;
+  }
+  
+  .hero-subtitle {
+    font-size: var(--font-size-lg);
+  }
+  
+  /* Grid improvements */
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  /* Utility classes */
+  .hidden-sm {
+    display: none !important;
+  }
+  
+  .visible-sm {
+    display: block !important;
+  }
+  
+  /* Adjust card layouts */
+  .service-card,
+  .team-card,
+  .merch-item {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .merch-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+/* Medium tablets (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  /* Typography adjustments */
+  h1 {
+    font-size: 3.5rem;
+  }
+  
+  /* Spacing adjustments */
+  .container {
+    padding: 0 var(--space-xl);
+  }
+  
+  /* Hero section */
+  .hero {
+    min-height: 90vh;
+  }
+  
+  /* Navigation */
+  .nav-list li {
+    margin: 0 var(--space-sm);
+  }
+  
+  /* Grid improvements */
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  /* Utility classes */
+  .hidden-md {
+    display: none !important;
+  }
+  
+  .visible-md {
+    display: block !important;
+  }
+  
+  /* Adjust modal size */
+  .modal-content {
+    max-width: 700px;
+  }
+  
+  /* Improve chatbot layout */
+  .chatbot-container {
+    height: 450px;
+  }
+}
+
+/* ===== 3. DESKTOP REFINEMENTS ===== */
+/* Small desktops (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  /* Typography adjustments */
+  h1 {
+    font-size: 4rem;
+  }
+  
+  /* Spacing adjustments */
+  section {
+    padding: var(--space-3xl) 0;
+  }
+  
+  /* Navigation */
+  .nav-list li {
+    margin: 0 var(--space-md);
+  }
+  
+  /* Grid improvements */
+  .grid-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  /* Utility classes */
+  .hidden-lg {
+    display: none !important;
+  }
+  
+  .visible-lg {
+    display: block !important;
+  }
+  
+  /* Enhanced hover effects */
+  .hover-scale:hover {
+    transform: scale(1.08);
+  }
+}
+
+/* ===== 4. LARGE SCREEN ADAPTATIONS ===== */
+/* Large desktops (1200px and up) */
+@media (min-width: 1200px) {
+  /* Typography adjustments */
+  :root {
+    --font-size-md: 1.125rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 1.5rem;
+    --font-size-2xl: 1.75rem;
+    --font-size-3xl: 2.25rem;
+    --font-size-4xl: 3rem;
+    --font-size-5xl: 3.5rem;
+  }
+  
+  /* Spacing adjustments */
+  .container {
+    max-width: 1400px;
+    padding: 0 var(--space-2xl);
+  }
+  
+  /* Hero section */
+  .hero h1 {
+    font-size: 5rem;
+  }
+  
+  /* Grid improvements */
+  .grid {
+    gap: var(--space-xl);
+  }
+  
+  /* Utility classes */
+  .hidden-xl {
+    display: none !important;
+  }
+  
+  .visible-xl {
+    display: block !important;
+  }
+  
+  /* Enhanced animations */
+  .card-tilt:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(5deg) scale3d(1.08, 1.08, 1.08);
+  }
+  
+  /* Improved modal size */
+  .modal-content {
+    max-width: 1000px;
+  }
+  
+  /* Larger chatbot */
+  .chatbot-container {
+    height: 600px;
+  }
+  
+  /* Larger image generator */
+  .image-gen-container {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+  }
+}
+
+/* Extra large screens (1600px and up) */
+@media (min-width: 1600px) {
+  /* Typography adjustments */
+  :root {
+    --font-size-md: 1.25rem;
+    --font-size-lg: 1.5rem;
+    --font-size-xl: 1.75rem;
+    --font-size-2xl: 2rem;
+    --font-size-3xl: 2.5rem;
+    --font-size-4xl: 3.5rem;
+    --font-size-5xl: 4rem;
+  }
+  
+  /* Spacing adjustments */
+  .container {
+    max-width: 1600px;
+  }
+  
+  /* Hero section */
+  .hero h1 {
+    font-size: 5.5rem;
+  }
+  
+  /* Enhanced visual effects */
+  .neon-text-enhanced {
+    text-shadow:
+      0 0 7px var(--neon1),
+      0 0 14px var(--neon1),
+      0 0 28px var(--neon1),
+      0 0 56px var(--neon1);
+  }
+}
+
+/* ===== 5. DEVICE-SPECIFIC FIXES ===== */
+/* iPhone X, 11, 12, 13 notch fix */
+@supports (padding: max(0px)) {
+  .header {
+    padding-left: max(var(--space-lg), env(safe-area-inset-left));
+    padding-right: max(var(--space-lg), env(safe-area-inset-right));
+  }
+  
+  .footer {
+    padding-bottom: max(var(--space-lg), env(safe-area-inset-bottom));
+  }
+}
+
+/* Samsung Galaxy fold and other narrow devices */
+@media (max-width: 320px) {
+  /* Typography adjustments */
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+  }
+  
+  /* Spacing adjustments */
+  .container {
+    padding: 0 var(--space-sm);
+  }
+  
+  /* Simplify layouts */
+  .grid {
+    display: block;
+  }
+  
+  .grid > * {
+    margin-bottom: var(--space-md);
+  }
+  
+  /* Adjust buttons */
+  .btn {
+    padding: var(--space-xs) var(--space-md);
+    font-size: var(--font-size-sm);
+  }
+  
+  /* Simplify forms */
+  label {
+    font-size: var(--font-size-sm);
+  }
+  
+  input, textarea, select {
+    padding: var(--space-xs);
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* iPad Pro and other large tablets */
+@media (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
+  /* Adjust grid layouts */
+  .grid-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  /* Adjust spacing */
+  section {
+    padding: var(--space-2xl) 0;
+  }
+}
+
+/* ===== 6. ORIENTATION HANDLING ===== */
+/* Landscape orientation for mobile */
+@media (max-width: 767px) and (orientation: landscape) {
+  /* Adjust hero height */
+  .hero {
+    min-height: 450px;
+  }
+  
+  /* Adjust grid layouts */
+  .grid-2, .grid-3, .grid-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  /* Adjust modal position */
+  .modal-content {
+    max-height: 80vh;
+  }
+  
+  /* Adjust chatbot height */
+  .chatbot-container {
+    height: 300px;
+  }
+}
+
+/* Portrait orientation for tablets */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  /* Adjust hero height */
+  .hero {
+    min-height: 60vh;
+  }
+  
+  /* Adjust grid layouts */
+  .grid-3, .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ===== 7. HIGH-DPI SCREEN SUPPORT ===== */
+/* Retina and high-DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Enhance text rendering */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Enhance shadows */
+  .card-tilt, .glass-enhanced, .service-card, .team-card, .merch-item {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Enhance neon effects */
+  .neon-text-enhanced {
+    text-shadow:
+      0 0 3px var(--neon1),
+      0 0 6px var(--neon1),
+      0 0 12px var(--neon1),
+      0 0 24px var(--neon1);
+  }
+}
+
+/* ===== 8. PRINT STYLES ===== */
+@media print {
+  /* General print styles */
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+  
+  /* Hide unnecessary elements */
+  header, nav, footer, .back-to-top, .chatbot-widget, #bg-canvas, #cursor-trail,
+  #dark-mode-toggle, #scroll-progress, .modal, .audio-container, .image-gen-container {
+    display: none !important;
+  }
+  
+  /* Adjust container */
+  .container {
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Adjust typography */
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+  
+  p, blockquote, ul, ol, dl, table {
+    page-break-inside: avoid;
+  }
+  
+  /* Show URLs after links */
+  a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 90%;
+  }
+  
+  /* Don't show URLs for internal links */
+  a[href^="#"]:after {
+    content: "";
+  }
+  
+  /* Adjust images */
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+  }
+  
+  /* Adjust tables */
+  table {
+    border-collapse: collapse;
+  }
+  
+  table, th, td {
+    border: 1px solid #000;
+  }
+  
+  /* Force page breaks */
+  section {
+    page-break-before: always;
+  }
+  
+  /* Remove backgrounds and shadows */
+  * {
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}
+
+/* ===== ADDITIONAL RESPONSIVE UTILITIES ===== */
+/* Responsive text alignment */
+@media (max-width: 575px) {
+  .text-center-xs {
+    text-align: center !important;
+  }
+  
+  .text-left-xs {
+    text-align: left !important;
+  }
+  
+  .text-right-xs {
+    text-align: right !important;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .text-center-sm {
+    text-align: center !important;
+  }
+  
+  .text-left-sm {
+    text-align: left !important;
+  }
+  
+  .text-right-sm {
+    text-align: right !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .text-center-md {
+    text-align: center !important;
+  }
+  
+  .text-left-md {
+    text-align: left !important;
+  }
+  
+  .text-right-md {
+    text-align: right !important;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .text-center-lg {
+    text-align: center !important;
+  }
+  
+  .text-left-lg {
+    text-align: left !important;
+  }
+  
+  .text-right-lg {
+    text-align: right !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .text-center-xl {
+    text-align: center !important;
+  }
+  
+  .text-left-xl {
+    text-align: left !important;
+  }
+  
+  .text-right-xl {
+    text-align: right !important;
+  }
+}
+
+/* Responsive spacing utilities */
+@media (max-width: 575px) {
+  .mt-xs-0 { margin-top: 0 !important; }
+  .mt-xs-sm { margin-top: var(--space-sm) !important; }
+  .mt-xs-md { margin-top: var(--space-md) !important; }
+  .mt-xs-lg { margin-top: var(--space-lg) !important; }
+  .mt-xs-xl { margin-top: var(--space-xl) !important; }
+  
+  .mb-xs-0 { margin-bottom: 0 !important; }
+  .mb-xs-sm { margin-bottom: var(--space-sm) !important; }
+  .mb-xs-md { margin-bottom: var(--space-md) !important; }
+  .mb-xs-lg { margin-bottom: var(--space-lg) !important; }
+  .mb-xs-xl { margin-bottom: var(--space-xl) !important; }
+  
+  .p-xs-0 { padding: 0 !important; }
+  .p-xs-sm { padding: var(--space-sm) !important; }
+  .p-xs-md { padding: var(--space-md) !important; }
+  .p-xs-lg { padding: var(--space-lg) !important; }
+  .p-xs-xl { padding: var(--space-xl) !important; }
+}
+
+/* Responsive order utilities */
+@media (max-width: 767px) {
+  .order-first-xs {
+    order: -1 !important;
+  }
+  
+  .order-last-xs {
+    order: 999 !important;
+  }
+}
+
+/* Responsive flex utilities */
+@media (max-width: 767px) {
+  .flex-column-xs {
+    flex-direction: column !important;
+  }
+  
+  .flex-row-xs {
+    flex-direction: row !important;
+  }
+  
+  .justify-center-xs {
+    justify-content: center !important;
+  }
+  
+  .align-center-xs {
+    align-items: center !important;
+  }
+}
+
+/* Responsive width utilities */
+.w-100 {
+  width: 100% !important;
+}
+
+@media (max-width: 575px) {
+  .w-xs-100 {
+    width: 100% !important;
+  }
+  
+  .w-xs-75 {
+    width: 75% !important;
+  }
+  
+  .w-xs-50 {
+    width: 50% !important;
+  }
+  
+  .w-xs-25 {
+    width: 25% !important;
+  }
+}
+
+/* Responsive display utilities */
+.d-none {
+  display: none !important;
+}
+
+.d-block {
+  display: block !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.d-grid {
+  display: grid !important;
+}
+
+@media (max-width: 575px) {
+  .d-xs-none {
+    display: none !important;
+  }
+  
+  .d-xs-block {
+    display: block !important;
+  }
+  
+  .d-xs-flex {
+    display: flex !important;
+  }
+  
+  .d-xs-grid {
+    display: grid !important;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .d-sm-none {
+    display: none !important;
+  }
+  
+  .d-sm-block {
+    display: block !important;
+  }
+  
+  .d-sm-flex {
+    display: flex !important;
+  }
+  
+  .d-sm-grid {
+    display: grid !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .d-md-none {
+    display: none !important;
+  }
+  
+  .d-md-block {
+    display: block !important;
+  }
+  
+  .d-md-flex {
+    display: flex !important;
+  }
+  
+  .d-md-grid {
+    display: grid !important;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .d-lg-none {
+    display: none !important;
+  }
+  
+  .d-lg-block {
+    display: block !important;
+  }
+  
+  .d-lg-flex {
+    display: flex !important;
+  }
+  
+  .d-lg-grid {
+    display: grid !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .d-xl-none {
+    display: none !important;
+  }
+  
+  .d-xl-block {
+    display: block !important;
+  }
+  
+  .d-xl-flex {
+    display: flex !important;
+  }
+  
+  .d-xl-grid {
+    display: grid !important;
+  }
+}
