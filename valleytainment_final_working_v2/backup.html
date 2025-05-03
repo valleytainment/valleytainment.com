@@ -7,10 +7,7 @@
   <meta name="description" content="Cutting-edge entertainment company specializing in content creation, talent management, and music production with vibrant neon aesthetics" />
 
   <!-- Favicon & Manifest -->
-  <link rel="icon" href="images/favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-192.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-512.png" />
-  <link rel="apple-touch-icon" href="favicon-192.png" />
+  <link rel="icon" href="favicon.ico" />
   <link rel="manifest" href="manifest.json" />
 
   <!-- Preconnect & Preload -->
@@ -434,16 +431,11 @@
     }
     .logo {
       display: block;
-      max-width: 180px;
+      max-width: 150px;
     }
     .logo img {
       width: 100%;
       height: auto;
-      filter: drop-shadow(0 0 5px rgba(0, 195, 255, 0.5));
-      transition: filter 0.3s ease;
-    }
-    .logo img:hover {
-      filter: drop-shadow(0 0 8px rgba(0, 195, 255, 0.8));
     }
     .nav-menu {
       display: flex;
@@ -1045,7 +1037,7 @@
   <header role="banner">
     <div class="container header-content">
       <a href="#hero" class="logo">
-        <img src="images/logo.png" alt="Valleytainment Productions Logo" />
+        <img src="https://placehold.co/150x50/121212/00c3ff?text=VALLEYTAINMENT" alt="Valleytainment Logo" />
       </a>
       <button class="mobile-menu-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
       <nav class="nav-menu">
@@ -1118,21 +1110,21 @@
       <p class="modal-subtitle">Liquidation Clean out Sales</p>
       <div class="thrift-grid">
         <a href="https://whatnot.com/s/v51toNty" target="_blank" class="thrift-card">
-          <img src="images/merch-accessory.jpg" alt="Whatnot Valleytainment Shop">
+          <img src="https://placehold.co/100x100/121212/00c3ff?text=Whatnot" alt="Whatnot">
           <div class="thrift-platform">
             <i class="fas fa-shopping-bag"></i>
             <span>Whatnot</span>
           </div>
         </a>
         <a href="https://www.ebay.com/usr/valleytainmentthrifts" target="_blank" class="thrift-card">
-          <img src="images/merch-cap.jpg" alt="eBay Valleytainment Shop">
+          <img src="https://placehold.co/100x100/121212/00c3ff?text=eBay" alt="eBay">
           <div class="thrift-platform">
             <i class="fas fa-store"></i>
             <span>eBay</span>
           </div>
         </a>
         <a href="https://www.mercari.com/u/valleytainment?sv=0" target="_blank" class="thrift-card">
-          <img src="images/merch-hoodie.jpg" alt="Mercari Valleytainment Shop">
+          <img src="https://placehold.co/100x100/121212/00c3ff?text=Mercari" alt="Mercari">
           <div class="thrift-platform">
             <i class="fas fa-tags"></i>
             <span>Mercari</span>
@@ -1156,7 +1148,20 @@
           <a href="#services" class="btn btn-primary magnetic-btn-enhanced">Our Services</a>
           <a href="#idea-form" class="btn btn-secondary magnetic-btn-enhanced">Contact Us</a>
         </div>
-
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number counter" id="visitor-counter">0</span>
+            <span class="stat-label">Visitors</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number counter">1500</span>
+            <span class="stat-label">Projects</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number counter">250</span>
+            <span class="stat-label">Clients</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1313,7 +1318,7 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-logo">
-          <img src="images/logo.png" alt="Valleytainment Productions Logo" />
+          <img src="https://placehold.co/150x50/121212/00c3ff?text=VALLEYTAINMENT" alt="Valleytainment Logo" />
         </div>
         <div class="footer-info">
           <p><i class="fas fa-map-marker-alt"></i> Pittsburgh, PA & Worldwide</p>
@@ -1381,7 +1386,56 @@
       // Initialize VFX state
       updateVFXState();
       
-      // Counter code removed as requested
+      // ===== VISITOR COUNTER =====
+      const counterEl = document.getElementById('visitor-counter');
+      
+      // Real API call
+      function updateCounterWithAPI() {
+        fetch('https://api.countapi.xyz/hit/valleytainment/productions')
+          .then(response => response.json())
+          .then(data => {
+            animateCounter(counterEl, data.value);
+          })
+          .catch(() => {
+            // Fallback to random number if API fails
+            animateCounter(counterEl, Math.floor(Math.random() * 5000) + 1000);
+          });
+      }
+      
+      // Animate counter
+      function animateCounter(element, target) {
+        const current = parseInt(element.textContent) || 0;
+        const increment = Math.max(1, Math.floor((target - current) / 30));
+        let count = current;
+        
+        const timer = setInterval(() => {
+          count += increment;
+          element.textContent = count.toLocaleString();
+          
+          if (count >= target) {
+            element.textContent = target.toLocaleString();
+            clearInterval(timer);
+          }
+        }, 30);
+      }
+      
+      // Start counter
+      updateCounterWithAPI();
+      
+      // Animate other counters
+      document.querySelectorAll('.counter:not(#visitor-counter)').forEach(counter => {
+        const target = parseInt(counter.textContent);
+        counter.textContent = '0';
+        
+        const observer = new IntersectionObserver(entries => {
+          if (entries[0].isIntersecting) {
+            animateCounter(counter, target);
+            observer.disconnect();
+          }
+        }, { threshold: 0.5 });
+        
+        observer.observe(counter);
+      });
       
       // ===== MODAL CONTROLS =====
       const modals = {
