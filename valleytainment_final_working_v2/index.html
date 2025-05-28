@@ -327,13 +327,13 @@
     }
     
     /* === SOCIAL & THRIFT GRIDS === */
-    .find-us-grid, .thrift-grid {
+    .find-us-grid, .thrift-grid, .valley-store-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
       gap: 1rem;
       margin-top: 1.5rem;
     }
-    .find-us-card, .thrift-card {
+    .find-us-card, .thrift-card, .valley-store-card {
       background: var(--glass);
       padding: 1.5rem 1rem;
       border-radius: 8px;
@@ -344,13 +344,13 @@
       text-decoration: none;
       color: var(--light);
     }
-    .find-us-card:hover, .thrift-card:hover {
+    .find-us-card:hover, .thrift-card:hover, .valley-store-card:hover {
       background: rgba(255, 255, 255, 0.15);
       border-color: var(--accent);
       transform: translateY(-5px);
       box-shadow: 0 5px 15px rgba(0, 195, 255, 0.2);
     }
-    .find-us-card i, .thrift-card i {
+    .find-us-card i, .thrift-card i, .valley-store-card i {
       font-size: 2rem;
       margin-bottom: 0.5rem;
       background: var(--rainbow);
@@ -358,18 +358,18 @@
       background-clip: text;
       color: transparent;
     }
-    .find-us-card div, .thrift-card div {
+    .find-us-card div, .thrift-card div, .valley-store-card div {
       margin-top: 0.5rem;
       font-weight: 500;
     }
-    .thrift-card img {
+    .thrift-card img, .valley-store-card img {
       width: 100%;
       height: 100px;
       object-fit: contain;
       margin-bottom: 0.5rem;
       border-radius: 5px;
     }
-    .thrift-platform {
+    .thrift-platform, .valley-store-platform {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -659,51 +659,52 @@
       content: '';
       position: absolute;
       bottom: -10px;
-      left: 0;
-      width: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
       height: 3px;
-      background: var(--rainbow);
-      border-radius: 3px;
+      background: var(--accent);
     }
     .section-subtitle {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       opacity: 0.8;
+      max-width: 600px;
+      margin: 0 auto;
     }
     .about-content {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
     }
     .about-image {
-      border-radius: 8px;
       overflow: hidden;
+      border-radius: 8px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
     .about-image img {
       width: 100%;
       height: auto;
-      display: block;
+      transition: transform 0.5s ease;
     }
-    .about-text {
-      padding: 1rem;
+    .about-image:hover img {
+      transform: scale(1.05);
     }
     .about-text h3 {
-      margin: 1.5rem 0 0.5rem;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
       color: var(--accent);
     }
-    .about-text h3:first-child {
-      margin-top: 0;
-    }
     .about-text p {
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       line-height: 1.6;
     }
     .about-features {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: 1fr 1fr;
       gap: 1rem;
-      margin-top: 1.5rem;
       list-style: none;
+      margin-top: 2rem;
     }
     .about-features li {
       display: flex;
@@ -720,33 +721,176 @@
     }
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
     }
     .service-card {
-      background: var(--glass);
-      padding: 2rem;
+      background: rgba(0, 0, 0, 0.2);
       border-radius: 8px;
-      text-align: center;
+      overflow: hidden;
       transition: var(--trans);
-      backdrop-filter: blur(5px);
       border: 1px solid transparent;
     }
     .service-card:hover {
+      transform: translateY(-10px);
       border-color: var(--accent);
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 195, 255, 0.2);
     }
-    .service-icon {
-      font-size: 3rem;
+    .service-image {
+      height: 200px;
+      overflow: hidden;
+    }
+    .service-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .service-card:hover .service-image img {
+      transform: scale(1.1);
+    }
+    .service-content {
+      padding: 1.5rem;
+    }
+    .service-title {
+      font-size: 1.5rem;
       margin-bottom: 1rem;
       color: var(--accent);
     }
-    .service-card h3 {
+    .service-description {
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    
+    /* === TEAM SECTION === */
+    .team-section {
+      padding: 5rem 0;
+      background: rgba(0, 0, 0, 0.2);
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .team-card {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: var(--trans);
+      border: 1px solid transparent;
+    }
+    .team-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--neon1);
+      box-shadow: 0 10px 30px rgba(255, 0, 170, 0.2);
+    }
+    .team-image {
+      height: 300px;
+      overflow: hidden;
+      position: relative;
+    }
+    .team-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .team-card:hover .team-image img {
+      transform: scale(1.1);
+    }
+    .team-content {
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .team-name {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--neon1);
+    }
+    .team-role {
+      font-size: 1rem;
+      opacity: 0.8;
       margin-bottom: 1rem;
     }
-    .service-card p {
-      line-height: 1.6;
+    .team-social {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .team-social a {
+      color: var(--light);
+      font-size: 1.2rem;
+      transition: var(--trans);
+    }
+    .team-social a:hover {
+      color: var(--accent);
+      transform: translateY(-3px);
+    }
+    
+    /* === RECORDING ARTISTS SECTION === */
+    .recording-artists-section {
+      padding: 5rem 0;
+    }
+    .artists-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .artist-card {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: var(--trans);
+      border: 1px solid transparent;
+    }
+    .artist-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--neon2);
+      box-shadow: 0 10px 30px rgba(62, 255, 0, 0.2);
+    }
+    .artist-image {
+      height: 300px;
+      overflow: hidden;
+      position: relative;
+    }
+    .artist-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .artist-card:hover .artist-image img {
+      transform: scale(1.1);
+    }
+    .artist-content {
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .artist-name {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--neon2);
+    }
+    .artist-genre {
+      font-size: 1rem;
+      opacity: 0.8;
+      margin-bottom: 1rem;
+    }
+    .artist-social {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .artist-social a {
+      color: var(--light);
+      font-size: 1.2rem;
+      transition: var(--trans);
+    }
+    .artist-social a:hover {
+      color: var(--neon2);
+      transform: translateY(-3px);
     }
     
     /* === INTERACTIVE SECTION === */
@@ -754,112 +898,118 @@
       padding: 5rem 0;
       background: rgba(0, 0, 0, 0.2);
     }
-    .tabs-container {
-      margin-top: 2rem;
-    }
-    .tabs-nav {
+    .interactive-tabs {
       display: flex;
       justify-content: center;
       gap: 1rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
       flex-wrap: wrap;
     }
     .tab-btn {
-      background: var(--glass);
-      border: none;
+      background: transparent;
+      border: 2px solid var(--accent);
       color: var(--light);
-      padding: 0.8rem 1.5rem;
+      padding: 0.5rem 1.5rem;
       border-radius: 25px;
+      font-weight: 600;
       cursor: pointer;
       transition: var(--trans);
-      backdrop-filter: blur(5px);
     }
     .tab-btn.active, .tab-btn:hover {
       background: var(--accent);
       color: var(--dark);
+      box-shadow: 0 0 15px rgba(0, 195, 255, 0.5);
     }
-    .tabs-content {
-      background: var(--glass);
-      border-radius: 8px;
-      padding: 2rem;
-      backdrop-filter: blur(5px);
-    }
-    .tab-pane {
+    .tab-content {
       display: none;
     }
-    .tab-pane.active {
+    .tab-content.active {
       display: block;
       animation: fadeIn 0.5s;
     }
-    .visualizer-placeholder, .ar-placeholder {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 300px;
-      text-align: center;
-      color: var(--accent);
-    }
-    .visualizer-placeholder i, .ar-placeholder i {
-      font-size: 4rem;
-      margin-bottom: 1rem;
-      opacity: 0.7;
-    }
     
-    /* === CONTACT FORM === */
-    .idea-form-section {
+    /* === CONTACT SECTION === */
+    .contact-section {
       padding: 5rem 0;
     }
-    .form-container {
-      max-width: 600px;
-      margin: 2rem auto 0;
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .contact-icon {
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin-top: 0.2rem;
+    }
+    .contact-text h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .contact-text p, .contact-text a {
+      color: var(--light);
+      text-decoration: none;
+      transition: var(--trans);
+    }
+    .contact-text a:hover {
+      color: var(--accent);
+    }
+    .contact-form {
+      background: rgba(0, 0, 0, 0.2);
       padding: 2rem;
       border-radius: 8px;
-      backdrop-filter: blur(5px);
+      border: 1px solid var(--glass);
     }
     .form-group {
       margin-bottom: 1.5rem;
     }
-    .form-group label {
+    .form-label {
       display: block;
       margin-bottom: 0.5rem;
       font-weight: 500;
     }
-    .form-group input, .form-group textarea {
+    .form-control {
       width: 100%;
-      padding: 0.8rem;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 4px;
-      background: rgba(0, 0, 0, 0.2);
+      padding: 0.8rem 1rem;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--glass);
+      border-radius: 5px;
       color: var(--light);
+      font-family: var(--font);
       transition: var(--trans);
     }
-    .light-mode .form-group input, .light-mode .form-group textarea {
-      background: rgba(255, 255, 255, 0.8);
-      color: var(--dark);
-    }
-    .form-group input:focus, .form-group textarea:focus {
+    .form-control:focus {
       border-color: var(--accent);
+      box-shadow: 0 0 10px rgba(0, 195, 255, 0.3);
       outline: none;
-      box-shadow: 0 0 0 3px rgba(0, 195, 255, 0.2);
     }
-    .form-group textarea {
+    textarea.form-control {
       min-height: 150px;
       resize: vertical;
     }
     
     /* === FOOTER === */
-    .footer-section {
-      padding: 3rem 0;
-      background: rgba(0, 0, 0, 0.5);
+    .footer {
+      padding: 3rem 0 1rem;
+      background: rgba(0, 0, 0, 0.3);
+      position: relative;
     }
     .footer-content {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
       flex-wrap: wrap;
       gap: 2rem;
-      margin-bottom: 2rem;
     }
     .footer-logo {
       max-width: 150px;
@@ -867,28 +1017,44 @@
     .footer-logo img {
       width: 100%;
       height: auto;
-    }
-    .footer-info {
-      flex: 1;
-      min-width: 200px;
+      filter: drop-shadow(0 0 5px rgba(0, 195, 255, 0.5));
     }
     .footer-info p {
-      margin-bottom: 0.5rem;
+      margin: 1rem 0;
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
-    .footer-info a {
+    .footer-info i {
       color: var(--accent);
+    }
+    .footer-links h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+    .footer-links ul {
+      list-style: none;
+    }
+    .footer-links li {
+      margin-bottom: 0.5rem;
+    }
+    .footer-links a {
+      color: var(--light);
       text-decoration: none;
       transition: var(--trans);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
     }
-    .footer-info a:hover {
-      text-decoration: underline;
+    .footer-links a:hover {
+      color: var(--accent);
+      transform: translateX(5px);
     }
     .footer-social {
       display: flex;
       gap: 1rem;
+      margin-top: 1rem;
     }
     .footer-social a {
       display: flex;
@@ -896,68 +1062,39 @@
       justify-content: center;
       width: 40px;
       height: 40px;
-      border-radius: 50%;
       background: var(--glass);
       color: var(--light);
+      border-radius: 50%;
       transition: var(--trans);
       backdrop-filter: blur(5px);
     }
     .footer-social a:hover {
       background: var(--accent);
       color: var(--dark);
-      transform: translateY(-3px);
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 195, 255, 0.3);
     }
-    .footer-copyright {
-      text-align: center;
-      padding-top: 2rem;
+    .footer-bottom {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
       border-top: 1px solid var(--glass);
+      text-align: center;
+      font-size: 0.9rem;
+      opacity: 0.8;
     }
     
-    /* === ANIMATIONS & EFFECTS === */
-    .card-tilt {
-      transform-style: preserve-3d;
-      perspective: 1000px;
-    }
-    .glass-enhanced {
-      background: var(--glass);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    }
-    .reveal-enhanced, .reveal-enhanced-left, .reveal-enhanced-right {
-      opacity: 0;
-      transition: all 1s;
-    }
-    .reveal-enhanced.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .reveal-enhanced-left.active {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    .reveal-enhanced-right.active {
-      opacity: 1;
-      transform: translateX(0);
+    /* === RESPONSIVE STYLES === */
+    @media (max-width: 992px) {
+      .about-content, .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .about-image {
+        order: -1;
+      }
     }
     
-    /* === RESPONSIVE ADJUSTMENTS === */
     @media (max-width: 768px) {
-      .hero-title {
-        font-size: 2rem;
-        transform: scale(0.9);
-      }
-      .find-us-grid, .thrift-grid {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-      }
-      #vfx-toggle {
-        padding: 0.5rem;
-        font-size: 0;
-      }
-      #vfx-toggle i {
-        font-size: 1rem;
-        margin-right: 0;
-      }
       .mobile-menu-toggle {
         display: block;
       }
@@ -966,38 +1103,41 @@
         top: 0;
         right: -100%;
         width: 80%;
-        max-width: 300px;
+        max-width: 400px;
         height: 100vh;
-        background: var(--dark);
-        padding: 5rem 1.5rem 2rem;
+        background: rgba(18, 18, 18, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 5rem 2rem 2rem;
         transition: var(--trans);
         z-index: 1000;
         overflow-y: auto;
       }
       .light-mode .nav-menu {
-        background: var(--light);
+        background: rgba(248, 248, 248, 0.95);
       }
       .nav-menu.active {
         right: 0;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
       }
       .nav-list {
         flex-direction: column;
-        gap: 2rem;
         align-items: flex-start;
+        gap: 2rem;
       }
-      .nav-list li {
-        width: 100%;
+      .has-dropdown {
+        position: relative;
       }
-      .nav-list a {
-        display: block;
-        width: 100%;
-        padding: 0.5rem 0;
+      .dropdown-toggle::after {
+        content: '\f107';
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        margin-left: 0.5rem;
+        transition: var(--trans);
+      }
+      .dropdown-toggle.active::after {
+        transform: rotate(180deg);
       }
       .dropdown {
         position: static;
-        width: 100%;
-        opacity: 1;
         visibility: visible;
         transform: none;
         background: transparent;
@@ -1063,6 +1203,7 @@
           <li><a href="#interactive">Interactive</a></li>
           <li><button id="find-us-btn" class="btn btn-small">Find Us</button></li>
           <li><button id="thrift-shop-btn" class="btn btn-small">Thrift Shop</button></li>
+          <li><button id="valley-store-btn" class="btn btn-small">VALLEY STORE</button></li>
           <li><a href="#idea-form" class="btn btn-primary">Contact Us</a></li>
           <li><a href="https://cash.app/$VALLEYTAINMENT" target="_blank" class="btn btn-secondary">Donate</a></li>
         </ul>
@@ -1142,6 +1283,31 @@
     </div>
   </div>
 
+  <!-- VALLEY STORE MODAL -->
+  <div id="valley-store-modal" class="modal">
+    <div class="modal-content glass-enhanced">
+      <button class="modal-close" aria-label="Close">&times;</button>
+      <h2>Valley Store</h2>
+      <p class="modal-subtitle">Official Valleytainment Merchandise</p>
+      <div class="valley-store-grid">
+        <a href="https://valleyheadz.com" target="_blank" class="valley-store-card">
+          <img src="images/merch-hoodie.jpg" alt="VALLEYHEADZ Store">
+          <div class="valley-store-platform">
+            <i class="fas fa-tshirt"></i>
+            <span>VALLEYHEADZ</span>
+          </div>
+        </a>
+        <div class="valley-store-card">
+          <img src="images/merch-accessory.jpg" alt="Coming Soon">
+          <div class="valley-store-platform">
+            <i class="fas fa-clock"></i>
+            <span>Coming Soon</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- MAIN CONTENT -->
   <main id="main" role="main">
     <!-- HERO SECTION -->
@@ -1199,38 +1365,204 @@
       <div class="container">
         <div class="section-header">
           <h2 class="section-title reveal-enhanced">Our Services</h2>
-          <p class="section-subtitle reveal-enhanced">What we offer to our clients</p>
+          <p class="section-subtitle reveal-enhanced">Professional entertainment solutions for all your needs</p>
         </div>
         <div class="services-grid">
-          <div class="service-card glass-enhanced card-tilt reveal-enhanced">
-            <i class="fas fa-video service-icon"></i>
-            <h3>Content Creation</h3>
-            <p>High-quality video production, editing, and content strategy</p>
+          <div class="service-card reveal-enhanced">
+            <div class="service-image">
+              <img src="https://placehold.co/600x400/121212/00c3ff?text=Content+Creation" alt="Content Creation" />
+            </div>
+            <div class="service-content">
+              <h3 class="service-title">Content Creation</h3>
+              <p class="service-description">We produce high-quality, engaging content for various platforms, including social media, websites, and streaming services.</p>
+              <a href="#idea-form" class="btn btn-small">Learn More</a>
+            </div>
           </div>
-          <div class="service-card glass-enhanced card-tilt reveal-enhanced">
-            <i class="fas fa-users service-icon"></i>
-            <h3>Talent Management</h3>
-            <p>Artist development, booking, and career strategy</p>
+          <div class="service-card reveal-enhanced">
+            <div class="service-image">
+              <img src="https://placehold.co/600x400/121212/ff00aa?text=Talent+Management" alt="Talent Management" />
+            </div>
+            <div class="service-content">
+              <h3 class="service-title">Talent Management</h3>
+              <p class="service-description">We represent and develop artists, helping them navigate the entertainment industry and reach their full potential.</p>
+              <a href="#idea-form" class="btn btn-small">Learn More</a>
+            </div>
           </div>
-          <div class="service-card glass-enhanced card-tilt reveal-enhanced">
-            <i class="fas fa-music service-icon"></i>
-            <h3>Music Production</h3>
-            <p>Recording, mixing, mastering, and beat making</p>
+          <div class="service-card reveal-enhanced">
+            <div class="service-image">
+              <img src="https://placehold.co/600x400/121212/3eff00?text=Music+Production" alt="Music Production" />
+            </div>
+            <div class="service-content">
+              <h3 class="service-title">Music Production</h3>
+              <p class="service-description">From recording to mixing and mastering, we provide comprehensive music production services for artists of all genres.</p>
+              <a href="#idea-form" class="btn btn-small">Learn More</a>
+            </div>
           </div>
-          <div class="service-card glass-enhanced card-tilt reveal-enhanced">
-            <i class="fas fa-calendar-alt service-icon"></i>
-            <h3>Event Planning</h3>
-            <p>Concert production, promotional events, and more</p>
+          <div class="service-card reveal-enhanced">
+            <div class="service-image">
+              <img src="https://placehold.co/600x400/121212/00c3ff?text=Event+Planning" alt="Event Planning" />
+            </div>
+            <div class="service-content">
+              <h3 class="service-title">Event Planning</h3>
+              <p class="service-description">We organize and manage events of all sizes, from intimate gatherings to large-scale concerts and festivals.</p>
+              <a href="#idea-form" class="btn btn-small">Learn More</a>
+            </div>
           </div>
-          <div class="service-card glass-enhanced card-tilt reveal-enhanced">
-            <i class="fas fa-paint-brush service-icon"></i>
-            <h3>Graphic Design</h3>
-            <p>Logos, merch, album art, and promotional materials</p>
+          <div class="service-card reveal-enhanced">
+            <div class="service-image">
+              <img src="https://placehold.co/600x400/121212/ff00aa?text=Graphic+Design" alt="Graphic Design" />
+            </div>
+            <div class="service-content">
+              <h3 class="service-title">Graphic Design</h3>
+              <p class="service-description">Our creative team designs eye-catching visuals for branding, marketing materials, album covers, and more.</p>
+              <a href="#idea-form" class="btn btn-small">Learn More</a>
+            </div>
           </div>
-          <div class="service-card glass-enhanced card-tilt reveal-enhanced">
-            <i class="fas fa-podcast service-icon"></i>
-            <h3>Podcasting</h3>
-            <p>Full podcast production and distribution</p>
+          <div class="service-card reveal-enhanced">
+            <div class="service-image">
+              <img src="https://placehold.co/600x400/121212/3eff00?text=Podcasting" alt="Podcasting" />
+            </div>
+            <div class="service-content">
+              <h3 class="service-title">Podcasting</h3>
+              <p class="service-description">We help create, produce, and distribute podcasts that engage audiences and build communities around your brand.</p>
+              <a href="#idea-form" class="btn btn-small">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM SECTION -->
+    <section id="team" class="team-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title reveal-enhanced">Our Team</h2>
+          <p class="section-subtitle reveal-enhanced">Meet the creative minds behind Valleytainment</p>
+        </div>
+        <div class="team-grid">
+          <div class="team-card reveal-enhanced">
+            <div class="team-image">
+              <img src="https://placehold.co/600x800/121212/ff00aa?text=Team+Member" alt="Team Member" />
+            </div>
+            <div class="team-content">
+              <h3 class="team-name">John Doe</h3>
+              <p class="team-role">Founder & Creative Director</p>
+              <div class="team-social">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-card reveal-enhanced">
+            <div class="team-image">
+              <img src="https://placehold.co/600x800/121212/00c3ff?text=Team+Member" alt="Team Member" />
+            </div>
+            <div class="team-content">
+              <h3 class="team-name">Jane Smith</h3>
+              <p class="team-role">Music Producer</p>
+              <div class="team-social">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-card reveal-enhanced">
+            <div class="team-image">
+              <img src="https://placehold.co/600x800/121212/3eff00?text=Team+Member" alt="Team Member" />
+            </div>
+            <div class="team-content">
+              <h3 class="team-name">Mike Johnson</h3>
+              <p class="team-role">Talent Manager</p>
+              <div class="team-social">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-card reveal-enhanced">
+            <div class="team-image">
+              <img src="https://placehold.co/600x800/121212/ff00aa?text=Team+Member" alt="Team Member" />
+            </div>
+            <div class="team-content">
+              <h3 class="team-name">Sarah Williams</h3>
+              <p class="team-role">Event Coordinator</p>
+              <div class="team-social">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECORDING ARTISTS SECTION -->
+    <section id="recording-artists" class="recording-artists-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title reveal-enhanced">Our Artists</h2>
+          <p class="section-subtitle reveal-enhanced">Talented performers we're proud to represent</p>
+        </div>
+        <div class="artists-grid">
+          <div class="artist-card reveal-enhanced">
+            <div class="artist-image">
+              <img src="https://placehold.co/600x800/121212/3eff00?text=Artist" alt="Artist" />
+            </div>
+            <div class="artist-content">
+              <h3 class="artist-name">Artist Name</h3>
+              <p class="artist-genre">Hip-Hop / R&B</p>
+              <div class="artist-social">
+                <a href="#" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+                <a href="#" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="artist-card reveal-enhanced">
+            <div class="artist-image">
+              <img src="https://placehold.co/600x800/121212/00c3ff?text=Artist" alt="Artist" />
+            </div>
+            <div class="artist-content">
+              <h3 class="artist-name">Artist Name</h3>
+              <p class="artist-genre">Pop / Electronic</p>
+              <div class="artist-social">
+                <a href="#" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+                <a href="#" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="artist-card reveal-enhanced">
+            <div class="artist-image">
+              <img src="https://placehold.co/600x800/121212/ff00aa?text=Artist" alt="Artist" />
+            </div>
+            <div class="artist-content">
+              <h3 class="artist-name">Artist Name</h3>
+              <p class="artist-genre">Rock / Alternative</p>
+              <div class="artist-social">
+                <a href="#" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+                <a href="#" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="artist-card reveal-enhanced">
+            <div class="artist-image">
+              <img src="https://placehold.co/600x800/121212/3eff00?text=Artist" alt="Artist" />
+            </div>
+            <div class="artist-content">
+              <h3 class="artist-name">Artist Name</h3>
+              <p class="artist-genre">Jazz / Soul</p>
+              <div class="artist-social">
+                <a href="#" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+                <a href="#" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1240,580 +1572,412 @@
     <section id="interactive" class="interactive-section">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title reveal-enhanced">Interactive Features</h2>
-          <p class="section-subtitle reveal-enhanced">Experience the Valleytainment magic</p>
+          <h2 class="section-title reveal-enhanced">Interactive</h2>
+          <p class="section-subtitle reveal-enhanced">Engage with our creative tools</p>
         </div>
-        <div class="tabs-container">
-          <div class="tabs-nav">
-            <button class="tab-btn active" data-tab="pi-tab">AI Image Generator</button>
-            <button class="tab-btn" data-tab="music-tab">Music Visualizer</button>
-            <button class="tab-btn" data-tab="ar-tab">AR Experience</button>
-          </div>
-          <div class="tabs-content">
-            <div class="tab-pane active" id="pi-tab">
-              <div class="image-generator-simple">
-                <div class="form-group">
-                  <label for="pi-prompt">Describe your image:</label>
-                  <textarea id="pi-prompt" rows="2" placeholder="e.g., A neon cityscape at night with monster characters"></textarea>
-                </div>
-                <button id="pi-generate" class="btn btn-primary">Generate</button>
-                <div id="pi-result" class="pi-result"><p>Enter prompt & click Generate.</p></div>
-                <div id="pi-actions" class="pi-actions"></div>
-              </div>
+        <div class="interactive-tabs">
+          <button class="tab-btn active" data-tab="ai-image">AI Image Generator</button>
+          <button class="tab-btn" data-tab="music-player">Music Player</button>
+          <button class="tab-btn" data-tab="3d-viewer">3D Character Viewer</button>
+        </div>
+        <div class="tab-content active" id="ai-image-tab">
+          <div class="image-generator-simple">
+            <h3>Simple AI Image Generator</h3>
+            <p>Describe what you want to see, and our AI will create it for you.</p>
+            <div class="form-group">
+              <label for="pi-prompt" class="form-label">Your Prompt:</label>
+              <input type="text" id="pi-prompt" class="form-control" placeholder="e.g., A neon monster in cyberpunk city">
             </div>
-            <div class="tab-pane" id="music-tab">
-              <div class="visualizer-placeholder">
-                <i class="fas fa-music"></i>
-                <p>Coming Soon: Interactive music visualizer</p>
-              </div>
+            <button id="pi-generate" class="btn btn-primary">Generate Image</button>
+            <div class="pi-result">
+              <p>Your generated image will appear here...</p>
             </div>
-            <div class="tab-pane" id="ar-tab">
-              <div class="ar-placeholder">
-                <i class="fas fa-vr-cardboard"></i>
-                <p>Coming Soon: AR monster character experience</p>
-              </div>
+            <div class="pi-actions">
+              <button id="pi-download" class="btn btn-small" disabled>Download</button>
+              <button id="pi-share" class="btn btn-small" disabled>Share</button>
             </div>
           </div>
+        </div>
+        <div class="tab-content" id="music-player-tab">
+          <h3>Coming Soon</h3>
+          <p>Our interactive music player will be available soon. Stay tuned!</p>
+        </div>
+        <div class="tab-content" id="3d-viewer-tab">
+          <h3>Coming Soon</h3>
+          <p>Our 3D character viewer will be available soon. Stay tuned!</p>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT FORM -->
-    <section id="idea-form" class="idea-form-section">
+    <!-- CONTACT SECTION -->
+    <section id="idea-form" class="contact-section">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title reveal-enhanced">Contact Us</h2>
-          <p class="section-subtitle reveal-enhanced">Need to contact us? Want to collaborate? Reach out!</p>
+          <p class="section-subtitle reveal-enhanced">Share your ideas or inquiries with us</p>
         </div>
-        <form id="email-form" class="form-container glass-enhanced">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" required>
+        <div class="contact-grid">
+          <div class="contact-info reveal-enhanced-left">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="contact-text">
+                <h3>Location</h3>
+                <p>Pittsburgh, PA, USA</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="contact-text">
+                <h3>Email</h3>
+                <a href="mailto:info@valleytainment.com">info@valleytainment.com</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="contact-text">
+                <h3>Phone</h3>
+                <a href="tel:+14125551234">+1 (412) 555-1234</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div class="contact-text">
+                <h3>Working Hours</h3>
+                <p>Monday - Friday: 9AM - 6PM</p>
+                <p>Saturday: 10AM - 4PM</p>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" required>
-          </div>
-          <div class="form-group">
-            <label for="subject">Subject</label>
-            <input type="text" id="subject" required>
-          </div>
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" rows="5" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Send Message</button>
-        </form>
+          <form class="contact-form reveal-enhanced-right" id="contact-form">
+            <div class="form-group">
+              <label for="name" class="form-label">Your Name</label>
+              <input type="text" id="name" name="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="email" class="form-label">Your Email</label>
+              <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="subject" class="form-label">Subject</label>
+              <input type="text" id="subject" name="subject" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="message" class="form-label">Your Message</label>
+              <textarea id="message" name="message" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+        </div>
       </div>
     </section>
   </main>
 
   <!-- FOOTER -->
-  <footer class="footer-section" role="contentinfo">
+  <footer class="footer" role="contentinfo">
     <div class="container">
       <div class="footer-content">
-        <div class="footer-logo">
-          <img src="images/logo.png" alt="Valleytainment Productions Logo" />
-        </div>
         <div class="footer-info">
-          <p><i class="fas fa-map-marker-alt"></i> Pittsburgh, PA & Worldwide</p>
-          <p><i class="fas fa-envelope"></i> <a href="mailto:Valleytainment@gmail.com">Valleytainment@gmail.com</a></p>
-          <p><i class="fas fa-clock"></i> Mon–Fri: 9 AM–6 PM EST</p>
+          <a href="#" class="footer-logo">
+            <img src="images/logo.png" alt="Valleytainment Productions Logo" />
+          </a>
+          <p><i class="fas fa-map-marker-alt"></i> Pittsburgh, PA, USA</p>
+          <p><i class="fas fa-envelope"></i> info@valleytainment.com</p>
+          <p><i class="fas fa-phone"></i> +1 (412) 555-1234</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/valleytainment/profilecard/?igsh=czI0MjgwYmpueDJr" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/share/1HqDpQweeL/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://x.com/valleytainment?s=09" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.tiktok.com/@valleytainment?lang=en" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          </div>
         </div>
-        <div class="footer-social">
-          <a href="https://www.instagram.com/valleytainment/profilecard/?igsh=czI0MjgwYmpueDJr" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://www.tiktok.com/@valleytainment?lang=en" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-          <a href="https://x.com/valleytainment?s=09" target="_blank" aria-label="X/Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="https://linktr.ee/valleytainment" target="_blank" aria-label="Linktree"><i class="fas fa-link"></i></a>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#hero"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li><a href="#about"><i class="fas fa-chevron-right"></i> About</a></li>
+            <li><a href="#services"><i class="fas fa-chevron-right"></i> Services</a></li>
+            <li><a href="#team"><i class="fas fa-chevron-right"></i> Team</a></li>
+            <li><a href="#recording-artists"><i class="fas fa-chevron-right"></i> Artists</a></li>
+            <li><a href="#idea-form"><i class="fas fa-chevron-right"></i> Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Our Services</h3>
+          <ul>
+            <li><a href="#services"><i class="fas fa-chevron-right"></i> Content Creation</a></li>
+            <li><a href="#services"><i class="fas fa-chevron-right"></i> Talent Management</a></li>
+            <li><a href="#services"><i class="fas fa-chevron-right"></i> Music Production</a></li>
+            <li><a href="#services"><i class="fas fa-chevron-right"></i> Event Planning</a></li>
+            <li><a href="#services"><i class="fas fa-chevron-right"></i> Graphic Design</a></li>
+            <li><a href="#services"><i class="fas fa-chevron-right"></i> Podcasting</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Newsletter</h3>
+          <p>Subscribe to our newsletter for updates</p>
+          <form class="newsletter-form">
+            <div class="form-group">
+              <input type="email" class="form-control" placeholder="Your Email" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+          </form>
         </div>
       </div>
-      <div class="footer-copyright">
-        <p>&copy; <span id="current-year"></span> Valleytainment Productions. All rights reserved.</p>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Valleytainment Productions. All Rights Reserved.</p>
       </div>
     </div>
   </footer>
 
-  <!-- SCRIPTS -->
+  <!-- JavaScript -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // ===== RAINBOW TITLE =====
-      const title = document.getElementById('rainbow-title');
-      const text = title.textContent;
-      title.innerHTML = '';
+      // Mobile Menu Toggle
+      const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+      const navMenu = document.querySelector('.nav-menu');
       
-      // Create rainbow characters with index for color positioning
-      text.split('').forEach((char, index) => {
-        const span = document.createElement('span');
-        span.className = 'rainbow-char';
-        span.textContent = char === ' ' ? '\u00A0' : char;
-        span.style.setProperty('--char-index', index % 8);
-        title.appendChild(span);
+      mobileMenuToggle.addEventListener('click', function() {
+        this.classList.toggle('active');
+        navMenu.classList.toggle('active');
       });
       
-      // Set current year in footer
-      document.getElementById('current-year').textContent = new Date().getFullYear();
+      // Dropdown Toggles
+      const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
       
-      // ===== VFX TOGGLE =====
-      const vfxToggle = document.getElementById('vfx-toggle');
-      let vfxEnabled = localStorage.getItem('vfxEnabled') !== 'false';
-      
-      function updateVFXState() {
-        const canvases = document.querySelectorAll('canvas');
-        canvases.forEach(c => c.style.display = vfxEnabled ? 'block' : 'none');
-        
-        if (vfxEnabled) {
-          vfxToggle.innerHTML = '<i class="fas fa-magic"></i> <span>VFX ON</span>';
-          vfxToggle.style.backgroundColor = 'var(--neon1)';
-          vfxToggle.style.color = 'var(--dark)';
-        } else {
-          vfxToggle.innerHTML = '<i class="fas fa-eye-slash"></i> <span>VFX OFF</span>';
-          vfxToggle.style.backgroundColor = 'var(--glass)';
-          vfxToggle.style.color = 'var(--light)';
-        }
-      }
-      
-      vfxToggle.addEventListener('click', () => {
-        vfxEnabled = !vfxEnabled;
-        localStorage.setItem('vfxEnabled', vfxEnabled);
-        updateVFXState();
-      });
-      
-      // Initialize VFX state
-      updateVFXState();
-      
-      // Counter code removed as requested
-      
-      // ===== MODAL CONTROLS =====
-      const modals = {
-        'find-us-btn': 'find-us-modal',
-        'thrift-shop-btn': 'thrift-shop-modal'
-      };
-      
-      Object.entries(modals).forEach(([btnId, modalId]) => {
-        const btn = document.getElementById(btnId);
-        const modal = document.getElementById(modalId);
-        const closeBtn = modal.querySelector('.modal-close');
-        
-        btn.addEventListener('click', () => modal.classList.add('open'));
-        closeBtn.addEventListener('click', () => modal.classList.remove('open'));
-      });
-      
-      // Close modals with Escape key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          document.querySelectorAll('.modal.open').forEach(modal => {
-            modal.classList.remove('open');
-          });
-        }
-      });
-      
-      // Close modal on outside click
-      window.addEventListener('click', function(e) {
-        document.querySelectorAll('.modal').forEach(modal => {
-          if (e.target === modal) {
-            modal.classList.remove('open');
-          }
+      dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          this.classList.toggle('active');
+          const dropdown = this.nextElementSibling;
+          dropdown.classList.toggle('show');
         });
       });
       
-      // ===== SCROLL EFFECTS =====
-      const scrollProgress = document.getElementById('scroll-progress');
+      // Modal Functionality
+      const findUsBtn = document.getElementById('find-us-btn');
+      const thriftShopBtn = document.getElementById('thrift-shop-btn');
+      const valleyStoreBtn = document.getElementById('valley-store-btn');
+      const findUsModal = document.getElementById('find-us-modal');
+      const thriftShopModal = document.getElementById('thrift-shop-modal');
+      const valleyStoreModal = document.getElementById('valley-store-modal');
+      const modalCloses = document.querySelectorAll('.modal-close');
+      
+      findUsBtn.addEventListener('click', function() {
+        findUsModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+      
+      thriftShopBtn.addEventListener('click', function() {
+        thriftShopModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+      
+      valleyStoreBtn.addEventListener('click', function() {
+        valleyStoreModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+      
+      modalCloses.forEach(close => {
+        close.addEventListener('click', function() {
+          const modal = this.closest('.modal');
+          modal.classList.remove('open');
+          document.body.style.overflow = '';
+        });
+      });
+      
+      window.addEventListener('click', function(e) {
+        if (e.target.classList.contains('modal')) {
+          e.target.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      });
+      
+      // Tab Functionality
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      const tabContents = document.querySelectorAll('.tab-content');
+      
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          const tabId = this.getAttribute('data-tab');
+          
+          tabBtns.forEach(btn => btn.classList.remove('active'));
+          tabContents.forEach(content => content.classList.remove('active'));
+          
+          this.classList.add('active');
+          document.getElementById(`${tabId}-tab`).classList.add('active');
+        });
+      });
+      
+      // Dark Mode Toggle
+      const darkModeToggle = document.getElementById('dark-mode-toggle');
+      
+      darkModeToggle.addEventListener('click', function() {
+        document.body.classList.toggle('light-mode');
+        localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+      });
+      
+      // Check for saved theme preference
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        document.body.classList.add('light-mode');
+      }
+      
+      // VFX Toggle
+      const vfxToggle = document.getElementById('vfx-toggle');
+      const bgCanvas = document.getElementById('bg-canvas');
+      const cursorTrail = document.getElementById('cursor-trail');
+      const lightningCanvas = document.getElementById('lightning-canvas');
+      
+      vfxToggle.addEventListener('click', function() {
+        bgCanvas.style.display = bgCanvas.style.display === 'none' ? 'block' : 'none';
+        cursorTrail.style.display = cursorTrail.style.display === 'none' ? 'block' : 'none';
+        lightningCanvas.style.display = lightningCanvas.style.display === 'none' ? 'block' : 'none';
+        localStorage.setItem('vfx', bgCanvas.style.display === 'none' ? 'off' : 'on');
+      });
+      
+      // Check for saved VFX preference
+      const savedVFX = localStorage.getItem('vfx');
+      if (savedVFX === 'off') {
+        bgCanvas.style.display = 'none';
+        cursorTrail.style.display = 'none';
+        lightningCanvas.style.display = 'none';
+      }
+      
+      // Back to Top Button
       const backToTop = document.querySelector('.back-to-top');
       
-      window.addEventListener('scroll', () => {
-        // Update scroll progress bar
-        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrolled = (window.scrollY / scrollHeight) * 100;
-        scrollProgress.style.width = `${scrolled}%`;
-        
-        // Show/hide back to top button
-        if (window.scrollY > 300) {
+      window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
           backToTop.classList.add('visible');
         } else {
           backToTop.classList.remove('visible');
         }
-        
-        // Reveal animations
-        document.querySelectorAll('.reveal-enhanced, .reveal-enhanced-left, .reveal-enhanced-right').forEach(el => {
-          const elementTop = el.getBoundingClientRect().top;
-          const elementVisible = 150;
-          
-          if (elementTop < window.innerHeight - elementVisible) {
-            el.classList.add('active');
-          }
-        });
       });
       
-      // Back to top functionality
-      backToTop.addEventListener('click', (e) => {
+      backToTop.addEventListener('click', function(e) {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
       
-      // ===== DARK MODE TOGGLE =====
-      const darkModeToggle = document.getElementById('dark-mode-toggle');
-      const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-      const currentTheme = localStorage.getItem('theme');
+      // Scroll Progress Indicator
+      const scrollProgress = document.getElementById('scroll-progress');
       
-      if (currentTheme === 'light') {
-        document.body.classList.add('light-mode');
-        darkModeToggle.textContent = '🌙';
-      } else {
-        darkModeToggle.textContent = '☀️';
+      window.addEventListener('scroll', function() {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        scrollProgress.style.width = scrolled + '%';
+      });
+      
+      // Rainbow Title Animation
+      const rainbowTitle = document.getElementById('rainbow-title');
+      if (rainbowTitle) {
+        const text = rainbowTitle.textContent;
+        rainbowTitle.innerHTML = '';
+        
+        for (let i = 0; i < text.length; i++) {
+          const char = text[i];
+          const span = document.createElement('span');
+          span.textContent = char;
+          span.className = 'rainbow-char';
+          span.style.setProperty('--char-index', i % 8);
+          rainbowTitle.appendChild(span);
+        }
       }
       
-      darkModeToggle.addEventListener('click', () => {
-        if (document.body.classList.contains('light-mode')) {
-          document.body.classList.remove('light-mode');
-          localStorage.setItem('theme', 'dark');
-          darkModeToggle.textContent = '☀️';
-        } else {
-          document.body.classList.add('light-mode');
-          localStorage.setItem('theme', 'light');
-          darkModeToggle.textContent = '🌙';
-        }
-      });
+      // Simple AI Image Generator
+      const piGenerate = document.getElementById('pi-generate');
+      const piPrompt = document.getElementById('pi-prompt');
+      const piResult = document.querySelector('.pi-result');
+      const piDownload = document.getElementById('pi-download');
+      const piShare = document.getElementById('pi-share');
       
-      // ===== MOBILE MENU =====
-      const menuToggle = document.querySelector('.mobile-menu-toggle');
-      const navMenu = document.querySelector('.nav-menu');
-      
-      menuToggle.addEventListener('click', () => {
-        menuToggle.classList.toggle('active');
-        navMenu.classList.toggle('active');
-      });
-      
-      // Close menu when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!navMenu.contains(e.target) && !menuToggle.contains(e.target) && navMenu.classList.contains('active')) {
-          menuToggle.classList.remove('active');
-          navMenu.classList.remove('active');
-        }
-      });
-      
-      // ===== TABS FUNCTIONALITY =====
-      const tabBtns = document.querySelectorAll('.tab-btn');
-      const tabPanes = document.querySelectorAll('.tab-pane');
-      
-      tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const tabId = btn.getAttribute('data-tab');
-          
-          tabBtns.forEach(b => b.classList.remove('active'));
-          tabPanes.forEach(p => p.classList.remove('active'));
-          
-          btn.classList.add('active');
-          document.getElementById(tabId).classList.add('active');
-        });
-      });
-      
-      // ===== AI IMAGE GENERATOR =====
-      const generateBtn = document.getElementById('pi-generate');
-      const promptInput = document.getElementById('pi-prompt');
-      const resultDiv = document.getElementById('pi-result');
-      const actionsDiv = document.getElementById('pi-actions');
-      
-      generateBtn.addEventListener('click', async () => {
-        const prompt = promptInput.value.trim();
-        if (!prompt) {
-          resultDiv.innerHTML = '<p style="color:#ff5555;">Please enter a description first!</p>';
+      piGenerate.addEventListener('click', function() {
+        if (piPrompt.value.trim() === '') {
+          alert('Please enter a prompt first!');
           return;
         }
         
-        resultDiv.innerHTML = '<p><i class="fas fa-spinner fa-spin"></i> Generating your image...</p>';
-        actionsDiv.innerHTML = '';
+        piResult.innerHTML = '<p>Generating your image... Please wait.</p>';
         
-        try {
-          // Using Pollinations.ai API
-          const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}`;
-          
-          // Create and display the image
-          resultDiv.innerHTML = '';
-          const img = document.createElement('img');
-          img.src = imageUrl;
-          img.alt = prompt;
-          
-          resultDiv.appendChild(img);
-          
-          // Create download button
-          const downloadBtn = document.createElement('a');
-          downloadBtn.href = imageUrl;
-          downloadBtn.download = `valleytainment-${prompt.replace(/\s+/g, '-').toLowerCase()}.png`;
-          downloadBtn.className = 'btn btn-small';
-          downloadBtn.innerHTML = '<i class="fas fa-download"></i> Download';
-          actionsDiv.appendChild(downloadBtn);
-          
-        } catch (error) {
-          console.error('Generation error:', error);
-          resultDiv.innerHTML = '<p style="color:#ff5555;">Error generating image. Please try again.</p>';
+        // Simulate image generation (in a real app, this would call an API)
+        setTimeout(() => {
+          const randomImage = `https://placehold.co/600x400/121212/${Math.random().toString(16).substr(-6)}?text=${encodeURIComponent(piPrompt.value)}`;
+          piResult.innerHTML = `<img src="${randomImage}" alt="Generated image of ${piPrompt.value}">`;
+          piDownload.disabled = false;
+          piShare.disabled = false;
+        }, 2000);
+      });
+      
+      piDownload.addEventListener('click', function() {
+        const img = piResult.querySelector('img');
+        if (img) {
+          const a = document.createElement('a');
+          a.href = img.src;
+          a.download = 'valleytainment-ai-image.png';
+          a.click();
         }
       });
       
-      // ===== EMAIL FORM =====
-      const emailForm = document.getElementById('email-form');
+      piShare.addEventListener('click', function() {
+        const img = piResult.querySelector('img');
+        if (img && navigator.share) {
+          navigator.share({
+            title: 'My AI-Generated Image',
+            text: 'Check out this image I created with Valleytainment AI!',
+            url: img.src
+          }).catch(console.error);
+        } else {
+          alert('Sharing is not supported on this browser.');
+        }
+      });
       
-      emailForm.addEventListener('submit', function(e) {
+      // Form Submission
+      const contactForm = document.getElementById('contact-form');
+      
+      contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const subject = document.getElementById('subject').value;
-        const message = document.getElementById('message').value;
+        // Simulate form submission
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
         
-        const mailtoLink = `mailto:Valleytainment@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`;
-        
-        window.location.href = mailtoLink;
+        setTimeout(() => {
+          alert('Thank you for your message! We will get back to you soon.');
+          this.reset();
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        }, 2000);
       });
       
-      // ===== CARD TILT EFFECT =====
-      // Apply tilt effect to all card-tilt elements except the image generator
-      document.querySelectorAll('.card-tilt').forEach(card => {
-        // Skip the image generator container
-        if (card.closest('#pi-tab')) return;
-        
-        card.addEventListener('mousemove', e => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-          
-          const rotateX = (y - centerY) / 20;
-          const rotateY = (centerX - x) / 20;
-          
-          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        });
-        
-        card.addEventListener('mouseleave', () => {
-          card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-        });
-      });
+      // Reveal Animation on Scroll
+      const revealElements = document.querySelectorAll('.reveal-enhanced, .reveal-enhanced-left, .reveal-enhanced-right');
       
-      // ===== INITIALIZE VFX EFFECTS =====
-      initStarField();
-      initCursorTrail();
-      initLightningEffect();
+      function reveal() {
+        revealElements.forEach(element => {
+          const windowHeight = window.innerHeight;
+          const elementTop = element.getBoundingClientRect().top;
+          const elementVisible = 150;
+          
+          if (elementTop < windowHeight - elementVisible) {
+            element.classList.add('active');
+          }
+        });
+      }
+      
+      window.addEventListener('scroll', reveal);
+      reveal(); // Initial check
     });
-    
-    // ===== STAR FIELD ANIMATION =====
-    function initStarField() {
-      const canvas = document.getElementById('bg-canvas');
-      const ctx = canvas.getContext('2d');
-      let stars = [];
-      
-      // Resize canvas to window size
-      function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        initStars();
-      }
-      
-      // Create stars
-      function initStars() {
-        stars = [];
-        const starCount = Math.floor(canvas.width * canvas.height / 1000);
-        
-        for (let i = 0; i < starCount; i++) {
-          stars.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            radius: Math.random() * 1.5,
-            speed: Math.random() * 0.5,
-            brightness: Math.random(),
-            color: `hsl(${Math.random() * 360}, 80%, 80%)`
-          });
-        }
-      }
-      
-      // Animate stars
-      function animateStars() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        stars.forEach(star => {
-          ctx.beginPath();
-          ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-          ctx.fillStyle = star.color;
-          ctx.globalAlpha = 0.5 + star.brightness * 0.5;
-          ctx.fill();
-          
-          // Move star
-          star.y += star.speed;
-          
-          // Reset star position if it goes off screen
-          if (star.y > canvas.height) {
-            star.y = 0;
-            star.x = Math.random() * canvas.width;
-          }
-        });
-        
-        requestAnimationFrame(animateStars);
-      }
-      
-      // Initialize
-      window.addEventListener('resize', resizeCanvas);
-      resizeCanvas();
-      animateStars();
-    }
-    
-    // ===== CURSOR TRAIL EFFECT =====
-    function initCursorTrail() {
-      const canvas = document.getElementById('cursor-trail');
-      const ctx = canvas.getContext('2d');
-      let particles = [];
-      let mouse = { x: 0, y: 0 };
-      
-      // Resize canvas to window size
-      function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-      
-      // Track mouse position
-      document.addEventListener('mousemove', function(e) {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-        
-        // Add particles on mouse move
-        addParticles(5);
-      });
-      
-      // Add particles
-      function addParticles(count) {
-        const colors = ['#ff00aa', '#3eff00', '#00c3ff', '#ffff00'];
-        
-        for (let i = 0; i < count; i++) {
-          particles.push({
-            x: mouse.x,
-            y: mouse.y,
-            size: Math.random() * 8 + 2,
-            color: colors[Math.floor(Math.random() * colors.length)],
-            speedX: Math.random() * 6 - 3,
-            speedY: Math.random() * 6 - 3,
-            life: 100
-          });
-        }
-      }
-      
-      // Animate particles
-      function animateParticles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        for (let i = 0; i < particles.length; i++) {
-          const p = particles[i];
-          
-          ctx.fillStyle = p.color;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-          ctx.fill();
-          
-          p.x += p.speedX;
-          p.y += p.speedY;
-          p.life--;
-          p.size *= 0.98;
-          
-          if (p.life <= 0 || p.size <= 0.5) {
-            particles.splice(i, 1);
-            i--;
-          }
-        }
-        
-        requestAnimationFrame(animateParticles);
-      }
-      
-      // Initialize
-      window.addEventListener('resize', resizeCanvas);
-      resizeCanvas();
-      animateParticles();
-    }
-    
-    // ===== LIGHTNING EFFECT =====
-    function initLightningEffect() {
-      const canvas = document.getElementById('lightning-canvas');
-      const ctx = canvas.getContext('2d');
-      
-      // Resize canvas to window size
-      function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-      
-      const lightnings = [];
-      const colors = ['#00c3ff', '#ff00aa', '#3eff00'];
-      
-      function createLightning() {
-        const x = Math.random() * canvas.width;
-        const segments = Math.floor(Math.random() * 10) + 5;
-        const color = colors[Math.floor(Math.random() * colors.length)];
-        
-        lightnings.push({
-          x,
-          y: 0,
-          segments: [],
-          color,
-          alpha: 1,
-          completed: false
-        });
-        
-        // Create initial segments
-        const lastLightning = lightnings[lightnings.length - 1];
-        let lastY = 0;
-        
-        for (let i = 0; i < segments; i++) {
-          const segmentHeight = (canvas.height / segments) * (0.7 + Math.random() * 0.6);
-          lastY += segmentHeight;
-          
-          lastLightning.segments.push({
-            x1: x + (Math.random() * 40 - 20),
-            y1: lastY - segmentHeight,
-            x2: x + (Math.random() * 80 - 40),
-            y2: lastY,
-            width: Math.random() * 3 + 1
-          });
-        }
-      }
-      
-      function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        // Randomly create new lightning
-        if (Math.random() < 0.02) {
-          createLightning();
-        }
-        
-        // Draw and update existing lightning
-        for (let i = 0; i < lightnings.length; i++) {
-          const lightning = lightnings[i];
-          
-          ctx.strokeStyle = lightning.color;
-          ctx.globalAlpha = lightning.alpha;
-          ctx.lineCap = 'round';
-          
-          lightning.segments.forEach(seg => {
-            ctx.lineWidth = seg.width;
-            ctx.beginPath();
-            ctx.moveTo(seg.x1, seg.y1);
-            ctx.lineTo(seg.x2, seg.y2);
-            ctx.stroke();
-          });
-          
-          // Fade out
-          lightning.alpha -= 0.01;
-          
-          if (lightning.alpha <= 0) {
-            lightnings.splice(i, 1);
-            i--;
-          }
-        }
-        
-        requestAnimationFrame(animate);
-      }
-      
-      // Initialize
-      window.addEventListener('resize', resizeCanvas);
-      resizeCanvas();
-      animate();
-    }
   </script>
 </body>
 </html>
