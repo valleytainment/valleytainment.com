@@ -1204,6 +1204,7 @@
           <li><button id="find-us-btn" class="btn btn-small">Find Us</button></li>
           <li><button id="thrift-shop-btn" class="btn btn-small">Thrift Shop</button></li>
           <li><button id="valley-store-btn" class="btn btn-small">VALLEY STORE</button></li>
+          <li><button id="local-love-btn" class="btn btn-small">Local Love</button></li>
           <li><a href="#idea-form" class="btn btn-primary">Contact Us</a></li>
           <li><a href="https://cash.app/$VALLEYTAINMENT" target="_blank" class="btn btn-secondary">Donate</a></li>
         </ul>
@@ -1297,6 +1298,45 @@
             <span>VALLEYHEADZ</span>
           </div>
         </a>
+        <div class="valley-store-card">
+          <img src="images/merch-accessory.jpg" alt="Coming Soon">
+          <div class="valley-store-platform">
+            <i class="fas fa-clock"></i>
+            <span>Coming Soon</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- LOCAL LOVE MODAL -->
+  <div id="local-love-modal" class="modal">
+    <div class="modal-content glass-enhanced">
+      <button class="modal-close" aria-label="Close">&times;</button>
+      <h2>Local Love</h2>
+      <p class="modal-subtitle">Supporting Our Local Community</p>
+      <div class="valley-store-grid">
+        <a href="https://crooklives.com/" target="_blank" class="valley-store-card">
+          <img src="images/merch-hoodie.jpg" alt="Crook Lives">
+          <div class="valley-store-platform">
+            <i class="fas fa-heart"></i>
+            <span>Crook Lives</span>
+          </div>
+        </a>
+        <a href="https://www.instagram.com/neverbeennormalbrand" target="_blank" class="valley-store-card">
+          <img src="images/merch-cap.jpg" alt="Never Been Normal">
+          <div class="valley-store-platform">
+            <i class="fas fa-star"></i>
+            <span>Never Been Normal</span>
+          </div>
+        </a>
+        <div class="valley-store-card">
+          <img src="images/merch-accessory.jpg" alt="Coming Soon">
+          <div class="valley-store-platform">
+            <i class="fas fa-clock"></i>
+            <span>Coming Soon</span>
+          </div>
+        </div>
         <div class="valley-store-card">
           <img src="images/merch-accessory.jpg" alt="Coming Soon">
           <div class="valley-store-platform">
@@ -1765,9 +1805,11 @@
       const findUsBtn = document.getElementById('find-us-btn');
       const thriftShopBtn = document.getElementById('thrift-shop-btn');
       const valleyStoreBtn = document.getElementById('valley-store-btn');
+      const localLoveBtn = document.getElementById('local-love-btn');
       const findUsModal = document.getElementById('find-us-modal');
       const thriftShopModal = document.getElementById('thrift-shop-modal');
       const valleyStoreModal = document.getElementById('valley-store-modal');
+      const localLoveModal = document.getElementById('local-love-modal');
       const modalCloses = document.querySelectorAll('.modal-close');
       
       findUsBtn.addEventListener('click', function() {
@@ -1782,6 +1824,11 @@
       
       valleyStoreBtn.addEventListener('click', function() {
         valleyStoreModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+      
+      localLoveBtn.addEventListener('click', function() {
+        localLoveModal.classList.add('open');
         document.body.style.overflow = 'hidden';
       });
       
